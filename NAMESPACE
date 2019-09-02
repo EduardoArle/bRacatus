@@ -3,5 +3,8 @@
 export(getGbifDecade)
 export(getGbifMonth)
 export(getGbifYear)
+export(getOcc)
+export(occSpatialPoints)
 import(data.table)
 import(rgbif)
+import(rgdal)
