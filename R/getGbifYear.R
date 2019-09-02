@@ -11,7 +11,6 @@
 #' @export
 getGbifYear <- function(species,year_0,year_1){
   #this function loops though year_0 to year_1 downloading all GBIF records for a species
-  library(rgbif);library(data.table)
   pts_year <- list()
   for(l in 1:(year_1-year_0+1))
   {
@@ -23,7 +22,6 @@ getGbifYear <- function(species,year_0,year_1){
         pts_year[[l]][[3]] <- downloadGbifMonth(species,year_0-1+l)
       }
     }
-    print(paste0("year ",year_0-1+l))
   }
   pts2 <- rbindlist(lapply(pts_year,function(x){x[[3]]}),fill=T)
   return(pts2)
