@@ -3,6 +3,7 @@
 #' Downloads gbif records iterating when necessary to overcome the limitation of 200,000 records
 #'
 #' @import rgdal
+#' @import raster
 #' @param  occ table
 #' @return This function creates spatialpoints from tables containing coordinates.
 #' @export
