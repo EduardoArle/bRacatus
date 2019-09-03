@@ -16,5 +16,3 @@ giveOcc <- function(table,species="species",longitude="longitude",latitude="lati
   names(table2)[which(names(table2)==latitude)] <- "decimalLatitude"
   return(table2)
 }
-
-

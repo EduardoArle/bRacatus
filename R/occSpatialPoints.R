@@ -4,6 +4,7 @@
 #'
 #' @import rgdal
 #' @import raster
+#' @import sp
 #' @param  occ table
 #' @return This function creates spatialpoints from tables containing coordinates.
 #' @export
