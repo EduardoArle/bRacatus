@@ -33,4 +33,3 @@ rasteriseChecklists <- function(checklists){
   names(checklists_raster) <- names(checklists)
   return(checklists_raster)
 }
-

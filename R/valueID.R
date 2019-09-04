@@ -1,0 +1,20 @@
+#' valueID
+#'
+#' Extracts signal values and ID from each cell
+#'
+#' @import raster
+#' @param  checklists_raster List containing rasterised checklists for presence, native and alien reference regions
+#' @return A list with cell IDs and signal values for all cells where the species is present, native and alien.
+#' @export
+valueID <- function(checklists_raster){
+  ID_prob <- list()
+  for(i in 1:length(checklists_raster))
+  {
+    cell_ID <- which(checklists_raster[[i]][]!=0)
+    prob <- checklists_raster[[i]][which(checklists_raster[[i]][]!=0)]
+    ID_prob[[i]] <- data.frame(cell_ID=cell_ID,prob=prob)
+  }
+  names(ID_prob) <- names(checklists_raster)
+  return(ID_prob)
+}
+
