@@ -2,7 +2,7 @@
 % Please edit documentation in R/getOcc.R
 \name{getOcc}
 \alias{getOcc}
-\title{Download gbif data using the function rgbif}
+\title{getOcc}
 \usage{
 getOcc(species)
 }

@@ -9,6 +9,7 @@ Imports: data.table,
          rgbif,
          rgdal,
          rgeos,
+         rworldmap,
          sp
 License: GPL (>= 2)
 Encoding: UTF-8

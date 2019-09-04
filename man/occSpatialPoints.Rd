@@ -2,7 +2,7 @@
 % Please edit documentation in R/occSpatialPoints.R
 \name{occSpatialPoints}
 \alias{occSpatialPoints}
-\title{Download gbif data using the function rgbif}
+\title{occSpatialPoints}
 \usage{
 occSpatialPoints(occ)
 }

@@ -1,4 +1,4 @@
-#' Download gbif data using the function rgbif
+#' getOcc
 #'
 #' Downloads gbif records iterating when necessary to overcome the limitation of 200,000 records
 #'
