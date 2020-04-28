@@ -30,7 +30,7 @@
 #'
 #' @export
 plotOcc <- function(occ_sp,regional=T){
-  world <- getMap()
+  world <- rworldmap::getMap()
   if(regional==T){
     countries <- unique(over(occ_sp,world)$NAME)
     map <- world[world$NAME %in% countries,]
