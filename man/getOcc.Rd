@@ -15,3 +15,6 @@ This function downloads all records for a species from GBIF that have coordinate
 \description{
 Downloads gbif records iterating when necessary to overcome the limitation of 200,000 records
 }
+\examples{
+sps_occurrence <- getOcc("Hemitriccus mirandae")
+}

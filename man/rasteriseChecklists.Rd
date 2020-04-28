@@ -10,8 +10,8 @@ rasteriseChecklists(checklists)
 \item{checklists}{list containing checklists for the presence, alien and native reference regions}
 }
 \value{
-Converts lists of checklsits, categorised as "Presence", "Native" or "Alien" into half a degree rasters informing the prior confidence of detection in each cell.
+Converts lists of checklsits, categorised as "Presence", "Native" or "Alien" into half-degree rasters informing the prior confidence of detection in each cell.
 }
 \description{
-Transforms checklist shapefiles into rasters
+Transforms checklist shapefiles into rasters.
 }
