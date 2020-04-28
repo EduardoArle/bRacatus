@@ -10,10 +10,10 @@ occSpatialPoints(occ)
 \item{occ}{table}
 }
 \value{
-This function used the output of getOcc or giveOcc to create spatialPoints from tables.
+This function creates spatialpoints from tables containing coordinates.
 }
 \description{
-Creates spatialpoints from tables containing species names and coordinates.
+Downloads gbif records iterating when necessary to overcome the limitation of 200,000 records
 }
 \examples{
 # Create a data.frame containing species names and coordinates

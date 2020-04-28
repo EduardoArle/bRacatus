@@ -7,6 +7,11 @@
 #' @import sp
 #' @param  occ table
 #' @return This function creates spatialpoints from tables containing coordinates.
+#' @examples
+#' # Create a data.frame containing species names and coordinates
+#'
+#' sps_occurrence <- getOcc("Hemitriccus mirandae")
+#' sps_sp <- occSpatialPoints(sps_occurrence)
 #' @export
 occSpatialPoints <- function(occ){
   occ_sp <- occ  #create spatial points from GBIF coordinates

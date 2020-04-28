@@ -6,6 +6,11 @@
 #' @import raster
 #' @param  checklists list containing checklists for the presence, alien and native reference regions
 #' @return Converts lists of checklsits, categorised as "Presence", "Native" or "Alien" into half a degree rasters informing the prior confidence of detection in each cell.
+#' @examples
+#' country_checklist <- countryChecklist(c("Brazil","Argentina","Uruguay","Paraguay"),
+#' c("native","alien","unknown","native"))
+#'
+#' rasterised_checklist <- rasteriseChecklists(country_checklist)
 #' @export
 rasteriseChecklists <- function(checklists){
   raster_half_degree <- raster(vals=NA,res=.5)   #create an empty raster with half degree grid

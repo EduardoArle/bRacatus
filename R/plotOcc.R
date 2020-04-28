@@ -1,19 +1,42 @@
-#' getOcc
+#' plotOcc
 #'
-#' Downloads gbif records iterating when necessary to overcome the limitation of 200,000 records
+#' Plot the species occurrences with map background for visualisation
 #'
-#' @import rgbif
-#' @import data.table
-#' @param  species character, species binomial name
-#' @return This function downloads all records for a species from GBIF that have coordinates info. If necessary it loops several times to overcome the limit of 200,000 occurrences inposed by occ_search function. It returns a data table.
+#' @import raster
+#' @import rgdal
+#' @import rworldmap
+#' @param  occ_sp spatialPointsDataTable of the species occurrence
+#' @param  regional logical, whether the whole world should be plotted as the background or only the region adjacent to the species countries of occurrence
+#' @return This function plots the species occurrence
+#' @examples
+#' occ <- getOcc("Hemitriccus mirandae")
+#' occ_sp <- occSpatialPoints(occ)
+#' 
+#' plotOcc(occ_sp)
+#' 
+#' test_data <- data.frame(sps=rep("Equus acephalus",10),
+#'                        lon=c(-43.2,-58.4,-56,-44,-54.5,-57.4,-60.1,-68.5,-71.3,-47.5),
+#'                        lat=c(-22.9,-34.6,-34.8,-20,-25.5,-25.2,-3,-32.5,-41.1,-15.5),
+#'                        gender=rep("female",10),head_size=rep("headless individual"))
+#'
+#' occ <- giveOcc(test_data,"sps","lon","lat")
+#' occ_sp <- occSpatialPoints(occ)
+#' 
+#' plotOcc(occ_sp)
+#' 
+#' # Plot occurrences with the whole world as background
+#' 
+#' plotOcc(occ_sp,regional=F)
+#'
 #' @export
-getOcc <- function(species){
-  gbif_rec <- occ_search(scientificName=species,limit=200000,hasCoordinate=T) #download only points with coordinates
-  if(!is.null(nrow(gbif_rec[[3]]))){
-    if(nrow(gbif_rec[[3]])==200000){    #if there are more than 200,000 records, it's necessary to download per parts
-      gbif_rec[[3]] <- getGbifDecade(species)
-    }
+plotOcc <- function(occ_sp,regional=T){
+  world <- getMap()
+  if(regional==T){
+    countries <- unique(over(occ_sp,world)$NAME)
+    map <- world[world$NAME %in% countries,]
+  }else{
+    map <- world
   }
-  gbif <- as.data.table(gbif_rec[[3]])
-  return(gbif)
+  plot(map,col="khaki",bg="azure2",main=unique(occ_sp$species))
+  points(occ_sp,pch=19,cex=0.6,col="red")
 }

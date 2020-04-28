@@ -8,6 +8,9 @@
 #' @param  country vector with one or more country names
 #' @param  biogeo_status vector informing the status of each country: alien, native or unknown
 #' @return This function provides shapefiles of countries with the correspondent biogeographic status of the species.
+#' @examples
+#' country_checklist <- countryChecklist(c("Brazil","Argentina","Uruguay","Paraguay"),
+#'                                       c("native","alien","unknown","native"))
 #' @export
 countryChecklist <- function(countries,biogeo_status){
   if(length(countries)!=length(biogeo_status)){
