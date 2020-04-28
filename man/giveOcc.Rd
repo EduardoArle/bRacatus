@@ -20,5 +20,5 @@ giveOcc(table, species = "species", longitude = "longitude",
 This function standardises the user provided georeferreced biological data to be fed into the models.
 }
 \description{
-Prepares user privided georeferrenced biological data for the models
+Prepares user provided georeferrenced biological data for the models
 }

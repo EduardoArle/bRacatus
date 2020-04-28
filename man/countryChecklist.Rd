@@ -7,12 +7,12 @@
 countryChecklist(countries, biogeo_status)
 }
 \arguments{
-\item{biogeo_status}{vector informing the status of each country: alien, native or unknown}
+\item{biogeo_status}{vector informing the status of each country: alien, native or unknown.}
 
-\item{country}{vector with one or more country names}
+\item{country}{vector with one or more country names.}
 }
 \value{
-This function provides shapefiles of countries with the correspondent biogeographic status of the species.
+This function provides a list of shapefiles of countries with the correspondent biogeographic status of the species.
 }
 \description{
 Prepares user provided reference regions on a country level

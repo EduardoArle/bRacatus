@@ -11,7 +11,7 @@ getOcc <- function(species){
   gbif_rec <- occ_search(scientificName=species,limit=200000,hasCoordinate=T) #download only points with coordinates
   if(!is.null(nrow(gbif_rec[[3]]))){
     if(nrow(gbif_rec[[3]])==200000){    #if there are more than 200,000 records, it's necessary to download per parts
-      gbif_rec[[3]] <- downloadGbifDecade(species)
+      gbif_rec[[3]] <- getGbifDecade(species)
     }
   }
   gbif <- as.data.table(gbif_rec[[3]])
