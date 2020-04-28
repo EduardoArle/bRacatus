@@ -10,8 +10,10 @@
 getGbifDecade <- function(species){
   pts_1001_1900 <- occ_search(scientificName=species,  #download gbif records per period
                               limit=200000,year='1001,1900')
-  if(nrow(pts_1001_1900[[3]])==200000){     #flag possible periods with more than 200000 records
-    warning("There are more than 200,000 records available between 1001 and 1009. Not all have been downloaded.")
+  if(class(pts_1001_1900[[3]])!="NULL"){
+    if(nrow(pts_1001_1900[[3]])==200000){     #flag possible periods with more than 200000 records
+      warning("There are more than 200,000 records available between 1001 and 1009. Not all have been downloaded.")
+    }
   }
   pts_decade <- list()
   for(k in 1:ceiling(((as.numeric(format(Sys.time(),"%Y")))-1900)/10))
@@ -21,7 +23,7 @@ getGbifDecade <- function(species){
                                   hasCoordinate=T)
     if(!is.null(nrow(pts_decade[[k]][[3]]))){
       if(nrow(pts_decade[[k]][[3]])==200000){
-        pts_decade[[k]][[3]] <- downloadGbifYear(species,1891+10*k,1890+10*k+10)
+        pts_decade[[k]][[3]] <- getGbifYear(species,1891+10*k,1890+10*k+10)
       }
     }
   }

@@ -19,7 +19,7 @@ getGbifYear <- function(species,year_0,year_1){
                                 hasCoordinate=T)
     if(!is.null(nrow(pts_year[[l]][[3]]))){
       if(nrow(pts_year[[l]][[3]])==200000){
-        pts_year[[l]][[3]] <- downloadGbifMonth(species,year_0-1+l)
+        pts_year[[l]][[3]] <- getGbifMonth(species,year_0-1+l)
       }
     }
   }
