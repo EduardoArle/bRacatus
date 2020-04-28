@@ -15,3 +15,9 @@ Converts lists of checklsits, categorised as "Presence", "Native" or "Alien" int
 \description{
 Transforms checklist shapefiles into rasters.
 }
+\examples{
+country_checklist <- countryChecklist(c("Brazil","Argentina","Uruguay","Paraguay"),
+                                      c("native","alien","unknown","native"))
+
+rasterised_checklist <- rasteriseChecklists(country_checklist)
+}

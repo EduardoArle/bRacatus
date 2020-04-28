@@ -17,3 +17,7 @@ This function provides a list of shapefiles of countries with the correspondent 
 \description{
 Prepares user provided reference regions on a country level
 }
+\examples{
+country_checklist <- countryChecklist(c("Brazil","Argentina","Uruguay","Paraguay"),
+                                      c("native","alien","unknown","native"))
+}

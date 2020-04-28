@@ -15,3 +15,9 @@ This function used the output of getOcc or giveOcc to create spatialPoints from 
 \description{
 Creates spatialpoints from tables containing species names and coordinates.
 }
+\examples{
+# Create a data.frame containing species names and coordinates
+
+sps_occurrence <- getOcc("Hemitriccus mirandae")
+sps_sp <- occSpatialPoints(sps_occurrence)
+}
