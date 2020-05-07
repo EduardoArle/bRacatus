@@ -2,11 +2,10 @@
 #'
 #' Plot the species occurrences with map background for visualisation
 #'
-#' @import raster
-#' @import rgdal
-#' @import rworldmap
-#' @param  occ_sp spatialPointsDataTable of the species occurrence
-#' @param  regional logical, whether the whole world should be plotted as the background or only the region adjacent to the species countries of occurrence
+#' @importFrom graphics points
+#' @importFrom rworldmap getMap
+#' @param  occ_sp spatialPointsDataTable of the species occurrence.
+#' @param  regional logical, whether the whole world should be plotted as the background or only the region adjacent to the species countries of occurrence.
 #' @return This function plots the species occurrence
 #' @examples
 #' occ <- getOcc("Hemitriccus mirandae")
@@ -24,13 +23,15 @@
 #' 
 #' plotOcc(occ_sp)
 #' 
+#' \dontrun{
 #' # Plot occurrences with the whole world as background
 #' 
-#' plotOcc(occ_sp,regional=F)
-#'
+#' plotOcc(occ_sp,regional=FALSE)
+#' }
+#' 
 #' @export
-plotOcc <- function(occ_sp,regional=T){
-  world <- rworldmap::getMap()
+plotOcc <- function(occ_sp,regional=TRUE){
+  world <- getMap()
   if(regional==T){
     countries <- unique(over(occ_sp,world)$NAME)
     map <- world[world$NAME %in% countries,]

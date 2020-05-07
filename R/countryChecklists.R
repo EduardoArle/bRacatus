@@ -2,10 +2,8 @@
 #'
 #' Prepares user provided reference regions on a country level
 #'
-#' @import rgdal
-#' @import raster
-#' @import rworldmap
-#' @param  country vector with one or more country names
+#' @importFrom rworldmap getMap
+#' @param  countries vector with one or more country names
 #' @param  biogeo_status vector informing the status of each country: alien, native or unknown
 #' @return This function provides shapefiles of countries with the correspondent biogeographic status of the species.
 #' @examples
@@ -16,7 +14,7 @@ countryChecklist <- function(countries,biogeo_status){
   if(length(countries)!=length(biogeo_status)){
     stop("countries and biogeo_status have different lengths")
   }
-  world <- rworldmap::getMap()
+  world <- getMap()
   features <- numeric()
   for(i in 1:length(countries))
   {

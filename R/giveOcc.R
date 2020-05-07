@@ -2,7 +2,6 @@
 #'
 #' Prepares user privided georeferrenced biological data for the models
 #'
-#' @import data.table
 #' @param  occ_data table containing latitude and longitude
 #' @param  species col.name containing the species information
 #' @param  longitude col.name containing the longitude information
@@ -18,8 +17,8 @@
 #'
 #' sps_occurrence <- giveOcc(test_data,"sps","lon","lat")
 #' @export
-giveOcc <- function(table,species="species",longitude="longitude",latitude="latitude"){
-  table2 <- table
+giveOcc <- function(occ_data,species="species",longitude="longitude",latitude="latitude"){
+  table2 <- occ_data
   names(table2)[which(names(table2)==species)] <- "species"
   names(table2)[which(names(table2)==longitude)] <- "decimalLongitude"
   names(table2)[which(names(table2)==latitude)] <- "decimalLatitude"

@@ -4,17 +4,17 @@
 \alias{giveOcc}
 \title{Input occurrence data}
 \usage{
-giveOcc(table, species = "species", longitude = "longitude",
+giveOcc(occ_data, species = "species", longitude = "longitude",
   latitude = "latitude")
 }
 \arguments{
+\item{occ_data}{table containing latitude and longitude}
+
 \item{species}{col.name containing the species information}
 
 \item{longitude}{col.name containing the longitude information}
 
 \item{latitude}{col.name containing the latitude information}
-
-\item{occ_data}{table containing latitude and longitude}
 }
 \value{
 This function standardises the user provided georeferreced biological data to be fed into the models.

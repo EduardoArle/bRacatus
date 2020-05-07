@@ -4,12 +4,12 @@
 \alias{plotOcc}
 \title{plotOcc}
 \usage{
-plotOcc(occ_sp, regional = T)
+plotOcc(occ_sp, regional = TRUE)
 }
 \arguments{
-\item{occ_sp}{spatialPointsDataTable of the species occurrence}
+\item{occ_sp}{spatialPointsDataTable of the species occurrence.}
 
-\item{regional}{logical, whether the whole world should be plotted as the background or only the region adjacent to the species countries of occurrence}
+\item{regional}{logical, whether the whole world should be plotted as the background or only the region adjacent to the species countries of occurrence.}
 }
 \value{
 This function plots the species occurrence
@@ -33,8 +33,10 @@ occ_sp <- occSpatialPoints(occ)
 
 plotOcc(occ_sp)
 
+\dontrun{
 # Plot occurrences with the whole world as background
 
-plotOcc(occ_sp,regional=F)
+plotOcc(occ_sp,regional=FALSE)
+}
 
 }
