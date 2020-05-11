@@ -3,6 +3,7 @@
 #' Plot the species occurrences with map background for visualisation
 #'
 #' @importFrom graphics points
+#' @importFrom raster plot
 #' @importFrom rworldmap getMap
 #' @importFrom sp over
 #' @param occ_sp spatialPointsDataTable of the species occurrence.

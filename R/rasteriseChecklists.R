@@ -2,8 +2,14 @@
 #'
 #' Transforms checklist shapefiles into rasters
 #'
-#' @import rgdal
-#' @import raster
+#' @importFrom raster raster
+#' @importFrom raster projectRaster
+#' @importFrom raster projection
+#' @importFrom raster crop
+#' @importFrom raster rasterize
+#' @importFrom raster extend
+#' @importFrom raster stack
+#' @importFrom raster extent
 #' @param  checklists list containing checklists for the presence, alien and native reference regions
 #' @return Converts lists of checklsits, categorised as "Presence", "Native" or "Alien" into half a degree rasters informing the prior confidence of detection in each cell.
 #' @examples

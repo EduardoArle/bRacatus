@@ -2,9 +2,7 @@
 #'
 #' Extracts cellIDs of presence locations
 #'
-#' @import raster
-#' @import rgdal
-#' @param  occ_sp spatialPointsDataTable of the species occurrence.
+#' @param occ_sp spatialPointsDataTable of the species occurrence.
 #' @return A spatialPointsDataTable including the cellID of each point record
 #' @examples
 #' country_checklist <- countryChecklist(c("Brazil","Argentina","Uruguay","Paraguay"),

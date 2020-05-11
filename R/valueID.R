@@ -2,7 +2,6 @@
 #'
 #' Extracts signal values and ID from each cell
 #'
-#' @import raster
 #' @param  checklists_raster List containing rasterised checklists for presence, native and alien reference regions
 #' @return A list with cell IDs and signal values for all cells where the species is present, native and alien.
 #' @examples
