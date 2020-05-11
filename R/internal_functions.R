@@ -1,3 +1,5 @@
+#' @importFrom data.table rbindlist
+#' 
 getGbifDecade <- function(species){
   pts_1001_1900 <- occ_search(scientificName=species,  #download gbif records per period
                               limit=200000,year='1001,1900')

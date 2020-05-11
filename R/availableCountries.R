@@ -2,13 +2,13 @@
 #'
 #' List of countries and entities names for checklists
 #'
-#' @import rgdal
-#' @import raster
-#' @import rworldmap
+#' @importFrom rworldmap getMap
 #' @return This function provides a list of countries and entities names available with rworldmaps for checklists
+#' @examples
+#' country_list <- availableCountries()
 #' @export
 availableCountries <- function(){
-  world <- rworldmap::getMap()
+  world <- getMap()
   list <- sort(world$NAME)
   return(list)
 }

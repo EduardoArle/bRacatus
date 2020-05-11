@@ -4,8 +4,9 @@
 #'
 #' @importFrom graphics points
 #' @importFrom rworldmap getMap
-#' @param  occ_sp spatialPointsDataTable of the species occurrence.
-#' @param  regional logical, whether the whole world should be plotted as the background or only the region adjacent to the species countries of occurrence.
+#' @importFrom sp over
+#' @param occ_sp spatialPointsDataTable of the species occurrence.
+#' @param regional logical, whether the whole world should be plotted as the background or only the region adjacent to the species countries of occurrence.
 #' @return This function plots the species occurrence
 #' @examples
 #' occ <- getOcc("Hemitriccus mirandae")

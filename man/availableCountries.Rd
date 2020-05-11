@@ -12,3 +12,6 @@ This function provides a list of countries and entities names available with rwo
 \description{
 List of countries and entities names for checklists
 }
+\examples{
+country_list <- availableCountries()
+}
