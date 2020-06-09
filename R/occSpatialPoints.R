@@ -5,7 +5,7 @@
 #' @importFrom sp proj4string
 #' @importFrom sp coordinates
 #' @importFrom sp CRS
-#' @param  occ table
+#' @param occ table
 #' @return This function creates spatialpoints from tables containing coordinates.
 #' @examples
 #' # Create a data.frame containing species names and coordinates

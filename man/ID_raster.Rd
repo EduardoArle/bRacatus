@@ -4,17 +4,12 @@
 \name{ID_raster}
 \alias{ID_raster}
 \title{Cell ID raster}
-\format{An object of class \code{RasterLayer} of dimension 360 x 720 x 1.}
-\usage{
-ID_raster
-}
 \description{
 A \code{Raster} half-degree raster of the world with unique IDs per cell
 }
 \examples{
 
 data("ID_raster")
-
 
 }
 \keyword{reference}

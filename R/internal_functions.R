@@ -1,4 +1,5 @@
 #' @importFrom data.table rbindlist
+#' @importFrom raster extract
 #' 
 getGbifDecade <- function(species){
   pts_1001_1900 <- occ_search(scientificName=species,  #download gbif records per period
@@ -57,4 +58,23 @@ getGbifMonth <- function(species,year){
   }
   pts_month2 <- rbindlist(lapply(pts_month,function(x){x[[3]]}),fill=T)
   return(pts_month2)
+}
+
+valueID <- function(checklists_raster){
+  ID_prob <- list()
+  for(i in 1:length(checklists_raster))
+  {
+    cell_ID <- which(checklists_raster[[i]][]!=0)
+    prob <- checklists_raster[[i]][which(checklists_raster[[i]][]!=0)]
+    ID_prob[[i]] <- data.frame(cell_ID=cell_ID,prob=prob)
+  }
+  names(ID_prob) <- names(checklists_raster)
+  return(ID_prob)
+}
+
+occID <- function(occ_sp){
+  ID <- bRacatus::ID_raster
+  ID_points <- extract(ID_raster,occ_sp)
+  pointsID <- cbind(occ_sp@data,ID_points=ID_points)
+  return(pointsID)
 }

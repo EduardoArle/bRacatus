@@ -10,16 +10,13 @@ occID(occ_sp)
 \item{occ_sp}{spatialPointsDataTable of the species occurrence.}
 }
 \value{
-A spatialPointsDataTable including the cellID of each point record
+A dataFrame including the original data in the input and the cellID of each point record
 }
 \description{
 Extracts cellIDs of presence locations
 }
 \examples{
-country_checklist <- countryChecklist(c("Brazil","Argentina","Uruguay","Paraguay"),
-c("native","alien","unknown","native"))
+occ_sp <- bRacatus::H_mirandae_sp
+occ_ID <- occID(occ_sp)
 
-rasterised_checklist <- rasteriseChecklists(country_checklist)
-
-value_IDs <- valueID(rasterised_checklist)
 }
