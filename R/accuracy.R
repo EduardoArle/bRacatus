@@ -10,7 +10,7 @@
 accuracy <- function(signals){
   model <- bRacatus::Model_accuracy
   acc <- predict(model,signals,type="response")
-  tab <- signals[,-c((ncol(signals)-3):ncol(signals))]
+  tab <- signals[,-((ncol(signals)-3):ncol(signals))]
   tab <- cbind(tab,accuracy=acc)
   return(tab)
 }

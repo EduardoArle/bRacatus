@@ -39,7 +39,7 @@ plotOcc <- function(occ,regional=TRUE){
   }else{
     map <- world
   }
-  par(mar=c(1,1,1,1))
+  par(mfrow=c(1,1),mar=c(1,1,1,1))
   plot(map,col="khaki",bg="azure2",main=unique(occ_sp$species))
   points(occ_sp,pch=19,cex=0.6,col="red")
 }

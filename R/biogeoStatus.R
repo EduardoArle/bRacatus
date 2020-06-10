@@ -10,7 +10,7 @@
 biogeoStatus <- function(signals){
   model <- bRacatus::Model_biogeo
   biogeo <- predict(model,signals,type="response")
-  tab <- signals[,-c((ncol(signals)-3):ncol(signals))]
+  tab <- signals[,-((ncol(signals)-3):ncol(signals))]
   tab <- cbind(tab,biogeoStatus=biogeo)
   return(tab)
 }
