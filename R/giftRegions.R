@@ -5,6 +5,7 @@
 #' @importFrom jsonlite read_json
 #' @importFrom geojsonio geojson_read
 #' @importFrom maptools spRbind
+#' @importFrom sp spChFIDs
 #' @param  species character, species binomial name
 #' @return This function returns a list containing three shapefiles derived by information supplied by GIFT. "regs" includes all the features corresponding to regions where the species has been listed as present. "regs_native" includes all the features corresponding to regions where the species has been listed as native. And "regs_alien" includes all the features corresponding to regions where the species has been listed as alien.
 #' @examples
@@ -12,7 +13,6 @@
 #' @export
 giftRegions <- function(species){
   
-  `%ni%` <- Negate(`%in%`) #create operator to do "not in" 
   genus <- gsub("(^.*) (.*$)","\\1",species)  #get genus
   epithet <- gsub("(^.*) (.*$)","\\2",species)  #get epithet
   
@@ -27,12 +27,11 @@ giftRegions <- function(species){
                             jdata$entity_ID[[i]],".geojson",sep=""), what = "sp")
     a$native <- jdata$native[[i]]
     a$naturalised <- jdata$naturalized[[i]]
+    b <- sp::spChFIDs(a,paste(i))
     if(i==1){
-      regs <- a
+      regs <- b
     }else{
-      if(a$entity_ID %ni% regs$entity_ID){
-        regs <- spRbind(regs,a)
-      }
+      regs <- spRbind(regs,b)
     }
   }
   regs_native <- regs[which(regs$native==1),]
@@ -41,4 +40,5 @@ giftRegions <- function(species){
   names(regs_list) <- c("Presence","Native","Alien")
   return(regs_list)
 }
+
 
