@@ -3,9 +3,12 @@
 #' Plot the species occurrences with map background for visualisation
 #'
 #' @importFrom graphics points
+#' @importFrom raster extent
 #' @importFrom raster plot
+#' @importFrom rgeos gIntersection
 #' @importFrom rworldmap getMap
 #' @importFrom sp over
+#' @importFrom sp proj4string
 #' @param occ dataTable of the species occurrence.
 #' @param regional logical, whether the whole world should be plotted as the background or only the region adjacent to the species countries of occurrence.
 #' @return This function plots the species occurrence
@@ -31,15 +34,18 @@
 #' 
 #' @export
 plotOcc <- function(occ,regional=TRUE){
-  world <- getMap()
+  world <- getMap(resolution = "low")
   occ_sp <- occSpatialPoints(occ)
   if(regional==T){
     countries <- unique(over(occ_sp,world)$NAME)
-    map <- world[world$NAME %in% countries,]
+    countries <- world[world$NAME %in% countries,]
+    CP <- as(extent(countries), "SpatialPolygons")
+    proj4string(CP) <- CRS(proj4string(world))
+    map <- suppressWarnings(gIntersection(world,CP,byid=TRUE))
   }else{
     map <- world
   }
   par(mfrow=c(1,1),mar=c(1,1,1,1))
-  plot(map,col="khaki",bg="azure2",main=unique(occ_sp$species))
-  points(occ_sp,pch=19,cex=0.6,col="red")
+  plot(map,col="khaki",bg="azure2",main=unique(occ_sp$species),font.main=3)
+  points(occ_sp,pch=21,cex=1,bg="red")
 }
