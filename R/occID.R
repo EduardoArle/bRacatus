@@ -13,6 +13,6 @@
 occID <- function(occ_sp){
   ID <- bRacatus::ID_raster
   ID_points <- extract(ID_raster,occ_sp)
-  pointsID <- cbind(occ_sp@data,ID_points=ID_points)
-  return(pointsID)
+  occ_sp$ID_points <- ID_points
+  return(occ_sp)
 }

@@ -10,7 +10,7 @@ biogeoStatus(signals)
 \item{signals}{output of the function signalCalculation. A dataFrame including the original point data and the signals sent by the reference regions.}
 }
 \value{
-The dataFrame with the species occurrence information and an extra column indication the estimated biogeographic status of each point.
+The dataFrame with the species occurrence information and an extra column indicating the estimated biogeographic status of each point.
 }
 \description{
 Estimates the biogeographic status of each point record.
