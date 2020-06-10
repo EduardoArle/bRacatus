@@ -40,7 +40,7 @@ plotOcc <- function(occ,regional=TRUE){
     countries <- unique(over(occ_sp,world)$NAME)
     countries <- world[world$NAME %in% countries,]
     CP <- as(extent(countries), "SpatialPolygons")
-    proj4string(CP) <- CRS(proj4string(world))
+    sp::proj4string(CP) <- CRS(proj4string(world))
     map <- suppressWarnings(gIntersection(world,CP,byid=TRUE))
   }else{
     map <- world

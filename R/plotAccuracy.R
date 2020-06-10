@@ -20,7 +20,7 @@ plotAccuracy <- function(acc,regional=TRUE){
     countries <- unique(over(acc_sp,world)$NAME)
     countries <- world[world$NAME %in% countries,]
     CP <- as(extent(map), "SpatialPolygons")
-    proj4string(CP) <- CRS(proj4string(world))
+    sp::proj4string(CP) <- CRS(proj4string(world))
     map <- suppressWarnings(gIntersection(world,CP,byid=TRUE))
   }else{
     map <- world
