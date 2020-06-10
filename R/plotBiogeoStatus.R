@@ -3,6 +3,7 @@
 #' Plot the species occurrences showing the estimated biogeographical status of points.
 #'
 #' @importFrom graphics points
+#' @importFrom plotfunctions gradientLegend
 #' @importFrom raster extent
 #' @importFrom raster plot
 #' @importFrom rgeos gIntersection
