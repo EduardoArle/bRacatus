@@ -17,13 +17,13 @@ giftRegions <- function(species){
   epithet <- gsub("(^.*) (.*$)","\\2",species)  #get epithet
   
 
-  jdata <- read_json(paste("http://gift.uni-goettingen.de/api/?query=species_distr&genus=",
+  jdata <- jsonlite::read_json(paste("http://gift.uni-goettingen.de/api/?query=species_distr&genus=",
                            genus,"&epithet=",epithet,sep=""),
                      simplifyVector = TRUE)  
   
   for(i in 1:nrow(jdata)) #some times: Error in spRbind(as(obj, "SpatialPolygons"), as(x, "SpatialPolygons")) : non-unique polygon IDs
   {
-    a <- geojson_read(paste("http://gift.uni-goettingen.de/geojson/geojson_smaller/", #download the shapefile for each region
+    a <- geojsonio::geojson_read(paste("http://gift.uni-goettingen.de/geojson/geojson_smaller/", #download the shapefile for each region
                             jdata$entity_ID[[i]],".geojson",sep=""), what = "sp")
     a$native <- jdata$native[[i]]
     a$naturalised <- jdata$naturalized[[i]]
