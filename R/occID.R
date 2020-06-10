@@ -3,16 +3,17 @@
 #' Extracts cellIDs of presence locations
 #'
 #' @importFrom raster extract
-#' @param occ_sp spatialPointsDataTable of the species occurrence.
+#' @param occ dataTable of the species occurrence.
 #' @return A dataFrame including the original data in the input and the cellID of each point record
 #' @examples
-#' occ_sp <- bRacatus::H_mirandae_sp
-#' occ_ID <- occID(occ_sp)
+#' occ <- getOcc("Hemitriccus mirandae")
+#' occ_ID <- occID(occ)
 #'
 #' @export
-occID <- function(occ_sp){
+occID <- function(occ){
+  occ_sp <- occSpatialPoints(occ)
   ID <- bRacatus::ID_raster
   ID_points <- extract(ID_raster,occ_sp)
-  occ_sp$ID_points <- ID_points
-  return(occ_sp)
+  occ$ID_points <- ID_points
+  return(occ)
 }
