@@ -4,10 +4,10 @@
 \alias{occID}
 \title{occID}
 \usage{
-occID(occ_sp)
+occID(occ)
 }
 \arguments{
-\item{occ_sp}{spatialPointsDataTable of the species occurrence.}
+\item{occ}{dataTable of the species occurrence.}
 }
 \value{
 A dataFrame including the original data in the input and the cellID of each point record
@@ -16,7 +16,7 @@ A dataFrame including the original data in the input and the cellID of each poin
 Extracts cellIDs of presence locations
 }
 \examples{
-occ_sp <- bRacatus::H_mirandae_sp
-occ_ID <- occID(occ_sp)
+occ <- getOcc("Hemitriccus mirandae")
+occ_ID <- occID(occ)
 
 }
