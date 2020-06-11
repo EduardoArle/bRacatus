@@ -24,7 +24,8 @@ signalCalculation <- function(ref_reg_ID,occ_ID,biogeo=TRUE){
   {
     dist <- readRDS(gzcon(url(paste0("http://gift.uni-goettingen.de/bracatus/distances/",occ_ID$ID_points[i]))))
     prox <- 1-(dist[sps_range_ID]/200) #normalise the distances and invert the values to calculate a proximity index between 0 and 1, getting only the values for the cells that send a signal
-
+    closeAllConnections()
+    
     if(occ_ID$ID_points[i] %in% sps_range_ID){ #this part checks whether the point is in a cell that sends a signal, to include the majoration of the signal sent from the same cell
       pts_value <- sps_range_prior_conf[which(sps_range_ID==occ_ID$ID_points[i])]  #gets the index in the point location
     }else{
