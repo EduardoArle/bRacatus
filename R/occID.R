@@ -13,7 +13,7 @@
 occID <- function(occ){
   occ_sp <- occSpatialPoints(occ)
   ID <- raster(res=1/2)
-  ID[] <- c(1:length(t))
+  ID[] <- c(1:length(ID))
   ID_points <- extract(ID,occ_sp)
   occ$ID_points <- ID_points
   return(occ)
