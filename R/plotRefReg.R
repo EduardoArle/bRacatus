@@ -8,16 +8,20 @@
 #' @return This function plots three maps of the species occurrence, showing the regions where it is present, native and alien.
 #' @export
 plotRefReg <- function(ref_reg){
-  world <- getMap()
+  world <- getMap(resolution = "low")
   
   par(mfrow=c(2,2),mar=c(0.6,0.6,0.6,0.6))
   
-  plot(world,col="khaki",bg="azure2",main="Presence",border=NA)
-  plot(ref_reg$Presence,col="blue",add=T)
+  plot(world,col="gray90",main="Presence",border=NA)
+  transp <- (1-(ref_reg$Presence$area/max(ref_reg$Presence$area)))*.99
+  plot(ref_reg$Presence,col=rgb(0,0,1,transp),border=NA,add=T)
   
-  plot(world,col="khaki",bg="azure2",main="Native",border=NA)
-  plot(ref_reg$Native,col="darkgreen",add=T)
+  plot(world,col="gray90",main="Native",border=NA)
+  transp <- (1-(ref_reg$Native$area/max(ref_reg$Native$area)))*.99
+  plot(ref_reg$Native,col=rgb(0,.4,0,transp),border=NA,add=T)
   
-  plot(world,col="khaki",bg="azure2",main="Alien",border=NA)
-  plot(ref_reg$Alien,col="orange",add=T)
+  plot(world,col="gray90",main="Alien",border=NA)
+  transp <- (1-(ref_reg$Alien$area/max(ref_reg$Alien$area)))*.99
+  plot(ref_reg$Alien,col=rgb(1,.5,0,transp),border=NA,add=T)
 }
+

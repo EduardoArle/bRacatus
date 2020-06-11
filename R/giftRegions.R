@@ -34,6 +34,7 @@ giftRegions <- function(species){
       regs <- spRbind(regs,b)
     }
   }
+  regs <- regs[which(regs$area>1000),]
   regs_native <- regs[which(regs$native==1),]
   regs_alien <- regs[which(regs$native==0),]
   regs_list <- list(regs,regs_native,regs_alien)

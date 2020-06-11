@@ -32,7 +32,7 @@ signalCalculation <- function(ref_reg_ID,occ_ID,biogeo=TRUE){
       pts_value <- 0
     }
 
-    pr_index[i] <- sum(sps_range_prior_conf*(prox^32))+pts_value*9
+    pr_index[i] <- sum(sps_range_prior_conf*(prox^32),na.rm=T)+pts_value*9
 
     if(biogeo==TRUE){
       sps_nat_range_ID <- ref_reg_ID$Native$cell_ID #IDs of the cells overlapping refference regions
@@ -46,7 +46,7 @@ signalCalculation <- function(ref_reg_ID,occ_ID,biogeo=TRUE){
         pts_value <- 0
       }
 
-      nat_index[i] <- sum(sps_nat_range_prior_conf*(nat_prox^32))+pts_value*9
+      nat_index[i] <- sum(sps_nat_range_prior_conf*(nat_prox^32),na.rm=T)+pts_value*9
 
       sps_alien_range_ID <- ref_reg_ID$Alien$cell_ID #IDs of the cells overlapping refference regions
       sps_alien_range_prior_conf <- ref_reg_ID$Alien$prob #a priori confidence of occurrence in each cell
@@ -59,7 +59,7 @@ signalCalculation <- function(ref_reg_ID,occ_ID,biogeo=TRUE){
         pts_value <- 0
       }
 
-      alien_index[i] <- sum(sps_alien_range_prior_conf*(alien_prox^32))+pts_value*9
+      alien_index[i] <- sum(sps_alien_range_prior_conf*(alien_prox^32),na.rm=T)+pts_value*9
     }
   }
 
