@@ -49,3 +49,16 @@ NULL
 #' data("Model_biogeo")
 #' 
 NULL
+
+#'Range Phalanger orientalis
+#'
+#'  A \code{SpatialPolygonsDataFrame} Range Phalanger orientalis
+#'
+#' @name Range_Phalanger_orientalis
+#' @docType data
+#' @keywords examplary object
+#' @examples
+#' 
+#' data("Range_Phalanger_orientalis")
+#' 
+NULL
