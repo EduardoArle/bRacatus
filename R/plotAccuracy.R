@@ -29,18 +29,19 @@
 plotAccuracy <- function(acc,regional=TRUE,reg.by="country",borders=TRUE,col.features="khaki",col.bg="azure2",plot.range=FALSE,range=NULL,box=FALSE){
   world <- getMap(resolution = "low")
   acc_sp <- occSpatialPoints(acc)
+  sp::proj4string(world) <- sp::proj4string(acc_sp)
   if(regional){
     if(reg.by=="country"){
       countries <- unique(over(acc_sp,world)$NAME)
       countries <- world[world$NAME %in% countries,]
       CP <- as(extent(countries), "SpatialPolygons")
       sp::proj4string(CP) <- CRS(proj4string(world))
-      map <- suppressWarnings(gIntersection(world,CP,byid=TRUE))
+      map <- suppressWarnings(gIntersection(world,CP,byid=TRUE,checkValidity=2))
     }
     if(reg.by=="points"){
       CP <- as(extent(acc_sp)+c(-1.5,1.5,-1.5,1.5), "SpatialPolygons")      
       sp::proj4string(CP) <- CRS(proj4string(world))
-      map <- suppressWarnings(gIntersection(world,CP,byid=TRUE))
+      map <- suppressWarnings(gIntersection(world,CP,byid=TRUE,checkValidity=2))
     }
   }else{
     map <- world

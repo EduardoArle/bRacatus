@@ -28,18 +28,19 @@
 plotBiogeoStatus <- function(biogeo,regional=TRUE,reg.by="country",borders=TRUE,col.features="khaki",col.bg="azure2",plot.range=FALSE,range=NULL,box=FALSE){
   world <- getMap(resolution = "low")
   biogeo_sp <- occSpatialPoints(biogeo)
+  sp::proj4string(world) <- sp::proj4string(biogeo_sp)
   if(regional){
     if(reg.by=="country"){
       countries <- unique(over(biogeo_sp,world)$NAME)
       countries <- world[world$NAME %in% countries,]
       CP <- as(extent(countries), "SpatialPolygons")
       sp::proj4string(CP) <- CRS(proj4string(world))
-      map <- suppressWarnings(gIntersection(world,CP,byid=TRUE))
+      map <- suppressWarnings(gIntersection(world,CP,byid=TRUE,checkValidity=2))
     }
     if(reg.by=="points"){
       CP <- as(extent(biogeo_sp)+c(-1.5,1.5,-1.5,1.5), "SpatialPolygons")      
       sp::proj4string(CP) <- CRS(proj4string(world))
-      map <- suppressWarnings(gIntersection(world,CP,byid=TRUE))
+      map <- suppressWarnings(gIntersection(world,CP,byid=TRUE,checkValidity=2))
     }
   }else{
     map <- world

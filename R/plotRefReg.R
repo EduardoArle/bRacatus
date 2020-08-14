@@ -4,11 +4,14 @@
 #'
 #' @importFrom raster plot
 #' @importFrom rworldmap getMap
+#' @importFrom sp proj4string
 #' @param ref_reg list containing three shapefiles derived by information supplied by GIFT. "regs" includes all the features corresponding to regions where the species has been listed as present. "regs_native" includes all the features corresponding to regions where the species has been listed as native. And "regs_alien" includes all the features corresponding to regions where the species has been listed as alien..
 #' @return This function plots three maps of the species occurrence, showing the regions where it is present, native and alien.
 #' @export
 plotRefReg <- function(ref_reg){
   world <- getMap(resolution = "low")
+  
+  sp::proj4string(world) <- sp::proj4string(ref_reg$Presence)
   
   par(mfrow=c(2,2),mar=c(0.6,0.6,0.6,0.6))
   
