@@ -17,4 +17,4 @@ install_devtools()
 
 ## Citation
 Please cite as:
-Arle, E bRacatus: an R package to estimate the accuracy and the biogeographic status of georeferenced biological data.
+Arle, E. bRacatus: estimating the accuracy and biogeographical status of georeferenced biological data
