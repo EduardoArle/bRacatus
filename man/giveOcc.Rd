@@ -4,8 +4,12 @@
 \alias{giveOcc}
 \title{Input occurrence data}
 \usage{
-giveOcc(occ_data, species = "species", longitude = "longitude",
-  latitude = "latitude")
+giveOcc(
+  occ_data,
+  species = "species",
+  longitude = "longitude",
+  latitude = "latitude"
+)
 }
 \arguments{
 \item{occ_data}{table containing latitude and longitude}
