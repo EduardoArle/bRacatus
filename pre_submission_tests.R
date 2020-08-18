@@ -1,15 +1,17 @@
+library(devtools)
 
-pkgdown::build_site()
-
-source("https://install-github.me/MangoTheCat/goodpractice")
+install_github("MangoTheCat/goodpractice")
 library(goodpractice)
-gp("C:/Users/az64mycy/Dropbox (iDiv)/research_projects/00_bracatus/bRacatus")
+
+gp("C:/Users/az64mycy/Dropbox (iDiv)/research_projects/00_bracatus/bRacatus") #change 
 
 #R CMD check
 devtools::check_built(path = "", 
                       manual = T, cran = T)
 
 devtools::spell_check()
+
+# Run R CMD --check, make sure that there are no erros, warnings or notes
 
 devtools::check_rhub()
 
@@ -18,3 +20,8 @@ devtools::check_win_devel()
 codemetar::write_codemeta()
 
 devtools::release()
+
+
+# create a release on github: https://github.com/EduardoArle/bRacatus/tags
+
+# Submit to Ropensci: https://github.com/ropensci/software-review 

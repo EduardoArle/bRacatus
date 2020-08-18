@@ -12,15 +12,13 @@
 #' 
 #' value_IDs <- valueID(rasterised_checklist)
 #' @export
-valueID <- function(checklists_raster){
+valueID <- function(checklists_raster) {
   ID_prob <- list()
-  for(i in 1:length(checklists_raster))
-  {
-    cell_ID <- which(checklists_raster[[i]][]!=0)
-    prob <- checklists_raster[[i]][which(checklists_raster[[i]][]!=0)]
-    ID_prob[[i]] <- data.frame(cell_ID=cell_ID,prob=prob)
+  for (i in 1:length(checklists_raster)) {
+    cell_ID <- which(checklists_raster[[i]][] != 0)
+    prob <- checklists_raster[[i]][which(checklists_raster[[i]][] != 0)]
+    ID_prob[[i]] <- data.frame(cell_ID = cell_ID, prob = prob)
   }
   names(ID_prob) <- names(checklists_raster)
   return(ID_prob)
 }
-

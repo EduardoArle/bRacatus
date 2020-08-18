@@ -7,7 +7,7 @@
 #' @examples
 #' country_list <- availableCountries()
 #' @export
-availableCountries <- function(){
+availableCountries <- function() {
   world <- getMap()
   list <- sort(world$NAME)
   return(list)
