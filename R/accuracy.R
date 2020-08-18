@@ -1,6 +1,6 @@
 #' accuracy
 #'
-#' Estimates the accuracy of each point record.
+#' Estimates the Accuracy of Each Point Record.
 #'
 #' @importFrom stats predict
 #' @param signals output of the function signalCalculation. A data.frame including the original point data and the signals sent by the reference regions.

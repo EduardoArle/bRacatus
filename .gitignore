@@ -38,3 +38,5 @@ rsconnect/
 
 .Rbuildignore
 inst/doc
+doc
+Meta
