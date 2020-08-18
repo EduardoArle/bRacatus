@@ -29,18 +29,10 @@
 plotAccuracy <- function(acc, regional = TRUE, reg.by = "country", borders = TRUE, col.features = "khaki", col.bg = "azure2", plot.range = FALSE, range = NULL, box = FALSE) {
   world <- getMap(resolution = "low")
   acc_sp <- occSpatialPoints(acc)
-<<<<<<< HEAD
   if(regional){
     if(reg.by=="country"){
       countries <- unique(over(acc_sp,world)$NAME)
       countries <- world[world$NAME %in% countries,]
-=======
-  sp::proj4string(world) <- sp::proj4string(acc_sp)
-  if (regional) {
-    if (reg.by == "country") {
-      countries <- unique(over(acc_sp, world)$NAME)
-      countries <- world[world$NAME %in% countries, ]
->>>>>>> c6ee58a3e41605f56bf2d35503cbf02cf7c3a0e6
       CP <- as(extent(countries), "SpatialPolygons")
       sp::proj4string(CP) <- CRS(proj4string(world))
       map <- suppressWarnings(gIntersection(world, CP, byid = TRUE, checkValidity = 2))
