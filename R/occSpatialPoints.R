@@ -16,6 +16,6 @@
 occSpatialPoints <- function(occ){
   occ  #create spatial points from GBIF coordinates
   sp::coordinates(occ) <- ~decimalLongitude+decimalLatitude
-  sp::proj4string(occ) <- CRS("+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0")
+  sp::proj4string(occ) <- CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
   return(occ)
 }
