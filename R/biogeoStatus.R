@@ -7,10 +7,10 @@
 #' @return The dataFrame with the species occurrence information and an extra column indicating the estimated biogeographic status of each point.
 #'
 #' @export
-biogeoStatus <- function(signals){
+biogeoStatus <- function(signals) {
   model <- bRacatus::Model_biogeo
-  biogeo <- predict(model,signals,type="response")
-  tab <- signals[,-((ncol(signals)-3):ncol(signals))]
-  tab <- cbind(tab,biogeoStatus=biogeo)
+  biogeo <- predict(model, signals, type = "response")
+  tab <- signals[, -((ncol(signals) - 3):ncol(signals))]
+  tab <- cbind(tab, biogeoStatus = biogeo)
   return(tab)
 }

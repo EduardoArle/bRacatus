@@ -13,9 +13,9 @@
 #' sps_occurrence <- getOcc("Hemitriccus mirandae")
 #' sps_sp <- occSpatialPoints(sps_occurrence)
 #' @export
-occSpatialPoints <- function(occ){
+occSpatialPoints <- function(occ) {
   occ  #create spatial points from GBIF coordinates
-  sp::coordinates(occ) <- ~decimalLongitude+decimalLatitude
+  sp::coordinates(occ) <- ~decimalLongitude + decimalLatitude
   sp::proj4string(occ) <- CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
   return(occ)
 }

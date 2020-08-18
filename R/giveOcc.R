@@ -17,10 +17,13 @@
 #'
 #' sps_occurrence <- giveOcc(test_data,"sps","lon","lat")
 #' @export
-giveOcc <- function(occ_data,species="species",longitude="longitude",latitude="latitude"){
+giveOcc <- function(occ_data, 
+                    species = "species", 
+                    longitude = "longitude", 
+                    latitude = "latitude") {
   table2 <- occ_data
-  names(table2)[which(names(table2)==species)] <- "species"
-  names(table2)[which(names(table2)==longitude)] <- "decimalLongitude"
-  names(table2)[which(names(table2)==latitude)] <- "decimalLatitude"
+  names(table2)[which(names(table2) == species)] <- "species"
+  names(table2)[which(names(table2) == longitude)] <- "decimalLongitude"
+  names(table2)[which(names(table2) == latitude)] <- "decimalLatitude"
   return(table2)
 }

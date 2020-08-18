@@ -33,20 +33,24 @@
 #' }
 #' 
 #' @export
-plotOcc <- function(occ,regional=TRUE){
+plotOcc <- function(occ, regional = TRUE) {
   world <- getMap(resolution = "low")
   occ_sp <- occSpatialPoints(occ)
   sp::proj4string(world) <- sp::proj4string(occ_sp)
-  if(regional==T){
-    countries <- unique(over(occ_sp,world)$NAME)
-    countries <- world[world$NAME %in% countries,]
+  if (regional == T) {
+    countries <- unique(over(occ_sp, world)$NAME)
+    countries <- world[world$NAME %in% countries, ]
     CP <- as(extent(countries), "SpatialPolygons")
     sp::proj4string(CP) <- CRS(proj4string(world))
-    map <- suppressWarnings(gIntersection(world,CP,byid=TRUE,checkValidity=2))
-  }else{
+    map <- suppressWarnings(gIntersection(world,
+                                          CP,
+                                          byid = TRUE, 
+                                          checkValidity = 2))
+  } else {
     map <- world
   }
-  par(mfrow=c(1,1),mar=c(1,1,1,1))
-  plot(map,col="khaki",bg="azure2",main=unique(occ_sp$species),font.main=3)
-  points(occ_sp,pch=21,cex=1,bg="red")
+  par(mfrow = c(1, 1), mar = c(1, 1, 1, 1))
+  plot(map, col = "khaki", bg = "azure2",
+       main = unique(occ_sp$species), font.main = 3)
+  points(occ_sp, pch = 21, cex = 1, bg = "red")
 }
