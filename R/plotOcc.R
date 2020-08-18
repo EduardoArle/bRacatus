@@ -36,7 +36,6 @@
 plotOcc <- function(occ,regional=TRUE){
   world <- getMap(resolution = "low")
   occ_sp <- occSpatialPoints(occ)
-  sp::proj4string(world) <- sp::proj4string(occ_sp)
   if(regional==T){
     countries <- unique(over(occ_sp,world)$NAME)
     countries <- world[world$NAME %in% countries,]

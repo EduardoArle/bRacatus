@@ -11,8 +11,6 @@
 plotRefReg <- function(ref_reg){
   world <- getMap(resolution = "low")
   
-  sp::proj4string(world) <- sp::proj4string(ref_reg$Presence)
-  
   par(mfrow=c(2,2),mar=c(0.6,0.6,0.6,0.6))
   
   plot(world,col="gray90",main="Presence",border=NA)

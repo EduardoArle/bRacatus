@@ -29,7 +29,6 @@
 plotAccuracy <- function(acc,regional=TRUE,reg.by="country",borders=TRUE,col.features="khaki",col.bg="azure2",plot.range=FALSE,range=NULL,box=FALSE){
   world <- getMap(resolution = "low")
   acc_sp <- occSpatialPoints(acc)
-  sp::proj4string(world) <- sp::proj4string(acc_sp)
   if(regional){
     if(reg.by=="country"){
       countries <- unique(over(acc_sp,world)$NAME)

@@ -4,17 +4,9 @@
 \alias{plotAccuracy}
 \title{plotAccuracy}
 \usage{
-plotAccuracy(
-  acc,
-  regional = TRUE,
-  reg.by = "country",
-  borders = TRUE,
-  col.features = "khaki",
-  col.bg = "azure2",
-  plot.range = FALSE,
-  range = NULL,
-  box = FALSE
-)
+plotAccuracy(acc, regional = TRUE, reg.by = "country",
+  borders = TRUE, col.features = "khaki", col.bg = "azure2",
+  plot.range = FALSE, range = NULL, box = FALSE)
 }
 \arguments{
 \item{acc}{dataTable of the species occurrence including a column with the estimated accuracy of points.}

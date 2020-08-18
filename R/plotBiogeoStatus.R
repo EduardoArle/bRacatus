@@ -28,7 +28,6 @@
 plotBiogeoStatus <- function(biogeo,regional=TRUE,reg.by="country",borders=TRUE,col.features="khaki",col.bg="azure2",plot.range=FALSE,range=NULL,box=FALSE){
   world <- getMap(resolution = "low")
   biogeo_sp <- occSpatialPoints(biogeo)
-  sp::proj4string(world) <- sp::proj4string(biogeo_sp)
   if(regional){
     if(reg.by=="country"){
       countries <- unique(over(biogeo_sp,world)$NAME)
