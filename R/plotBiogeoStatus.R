@@ -10,7 +10,8 @@
 #' @importFrom sp over proj4string
 #' @importFrom grDevices colorRampPalette rgb
 #' @importFrom methods as
-#' @param biogeo dataTable of the species occurrence including a column with the estimated biogeographical status of points.
+#' @param biogeo dataTable of the species occurrence including a 
+#' column with the estimated biogeographical status of points.
 #' @param regional logical, whether the whole world should be plotted as the background or only the region adjacent to the species countries of occurrence.
 #' @param reg.by character, by countries where there are points or by area where the points are located.
 #' @param borders logical, whether country limits should be plotted.

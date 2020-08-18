@@ -1,18 +1,21 @@
 {
-  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@context": [
+    "https://doi.org/10.5063/schema/codemeta-2.0",
+    "http://schema.org"
+  ],
   "@type": "SoftwareSourceCode",
   "identifier": "bRacatus",
   "description": "bRacatus uses reference regions, namely checklists and range maps, to estimate the accuracy and the biogeographical status of point occurrence records.",
   "name": "bRacatus: Estimates the accuracy and the biogeographical status of point occurrence records",
   "codeRepository": "https://github.com/EduardoArle/bRacatus",
   "license": "https://spdx.org/licenses/GPL-2.0",
-  "version": "0.9.1",
+  "version": "1.0.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.2 (2020-06-22)",
+  "runtimePlatform": "R Under development (unstable) (2020-08-17 r79033)",
   "author": [
     {
       "@type": "Person",
@@ -32,13 +35,38 @@
       "email": "eduardo.arle@idiv.de"
     }
   ],
-  "softwareSuggestions": [],
+  "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "knitr",
+      "name": "knitr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=knitr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "rmarkdown",
+      "name": "rmarkdown",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
+    }
+  ],
   "softwareRequirements": [
     {
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
-      "version": ">= 3.1.0"
+      "version": ">= 3.5.0"
     },
     {
       "@type": "SoftwareApplication",
@@ -141,18 +169,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "rgdal",
-      "name": "rgdal",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=rgdal"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "rgeos",
       "name": "rgeos",
       "provider": {
@@ -194,7 +210,69 @@
     }
   ],
   "releaseNotes": "https://github.com/EduardoArle/bRacatus/blob/master/NEWS.md",
-  "readme": "https://github.com/EduardoArle/bRacatus/blob/master/README.md",
-  "fileSize": "355.801KB",
-  "developmentStatus": "https://www.repostatus.org/#active"
+  "fileSize": "448.037KB",
+  "developmentStatus": "https://www.repostatus.org/#active",
+  "contIntegration": "https://travis-ci.org/EduardoArle/bRacatus",
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "datePublished": "2020",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Eduardo",
+          "familyName": "Arlé"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Alexander",
+          "familyName": "Zizka"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Petr",
+          "familyName": "Keil"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Marten",
+          "familyName": "Winter"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Franz",
+          "familyName": "Essl"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Tiffany",
+          "familyName": "Knight"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Patrick",
+          "familyName": "Weigelt"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Marina",
+          "familyName": "Jiménez-Muñoz"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Carsten",
+          "familyName": "Meyer"
+        }
+      ],
+      "name": "bRacatus: estimating the accuracy and biogeographical status of georeferenced biological data",
+      "isPartOf": {
+        "@type": "PublicationIssue",
+        "datePublished": "2020",
+        "isPartOf": {
+          "@type": ["PublicationVolume", "Periodical"],
+          "name": "submitted"
+        }
+      }
+    }
+  ]
 }

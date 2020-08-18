@@ -1,9 +1,6 @@
-library(devtools)
-
-install_github("MangoTheCat/goodpractice")
 library(goodpractice)
 
-gp("C:/Users/az64mycy/Dropbox (iDiv)/research_projects/00_bracatus/bRacatus") #change 
+gp("C:/Users/ca13kute/Documents/bRacatus/Package/bRacatus") #change 
 
 #R CMD check
 devtools::check_built(path = "", 
