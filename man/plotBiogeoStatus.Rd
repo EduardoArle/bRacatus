@@ -4,9 +4,17 @@
 \alias{plotBiogeoStatus}
 \title{plotBiogeoStatus}
 \usage{
-plotBiogeoStatus(biogeo, regional = TRUE, reg.by = "country",
-  borders = TRUE, col.features = "khaki", col.bg = "azure2",
-  plot.range = FALSE, range = NULL, box = FALSE)
+plotBiogeoStatus(
+  biogeo,
+  regional = TRUE,
+  reg.by = "country",
+  borders = TRUE,
+  col.features = "khaki",
+  col.bg = "azure2",
+  plot.range = FALSE,
+  range = NULL,
+  box = FALSE
+)
 }
 \arguments{
 \item{biogeo}{dataTable of the species occurrence including a column with the estimated biogeographical status of points.}

@@ -4,8 +4,12 @@
 \alias{rangeMaps}
 \title{rangeMaps}
 \usage{
-rangeMaps(range, biogeo = "legend", native = "Extant (resident)",
-  alien = "Introduced")
+rangeMaps(
+  range,
+  biogeo = "legend",
+  native = "Extant (resident)",
+  alien = "Introduced"
+)
 }
 \arguments{
 \item{range}{SpatialPolygonsDataFrame}
