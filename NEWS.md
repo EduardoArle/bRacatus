@@ -1,11 +1,10 @@
-bRacatus 1.0.1 (2020-08-18)
+bRacatus 1.0.0 (2020-08-18)
 =========================
 
 ### MAJOR IMPROVEMENTS
   * Added a README.md
   * Added vignette
   * Added NEWS.md
-  * Adapted code to good practice
   * Added Travis integration
   * Adapted code to goodpractice
   
@@ -13,6 +12,6 @@ bRacatus 1.0.1 (2020-08-18)
 ### MINOR IMPROVEMENTS
   * Added citation
   * Added CRAN comments
-  * Added badges to README
+  * Added travis badge to README
   * reformatted code
   

@@ -3,13 +3,15 @@ library(devtools)
 install_github("MangoTheCat/goodpractice")
 library(goodpractice)
 
-gp("C:/Users/az64mycy/Dropbox (iDiv)/research_projects/00_bracatus/bRacatus")
+gp("C:/Users/az64mycy/Dropbox (iDiv)/research_projects/00_bracatus/bRacatus") #change 
 
 #R CMD check
 devtools::check_built(path = "", 
                       manual = T, cran = T)
 
 devtools::spell_check()
+
+# Run R CMD --check, make sure that there are no erros, warnings or notes
 
 devtools::check_rhub()
 
