@@ -62,3 +62,16 @@ NULL
 #' data("Range_Phalanger_orientalis")
 #' 
 NULL
+
+#'signals example 1
+#'
+#'  A \code{SpatialPolygonsDataFrame} signals example 1
+#'
+#' @name signals
+#' @docType data
+#' @keywords examplary object
+#' @examples
+#' 
+#' data("signals")
+#' 
+NULL

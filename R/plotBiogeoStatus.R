@@ -2,17 +2,13 @@
 #'
 #' Plot the species occurrences showing the estimated biogeographical status of points.
 #'
-#' @importFrom graphics points
-#' @importFrom graphics par
+#' @importFrom graphics points par
 #' @importFrom plotfunctions gradientLegend
-#' @importFrom raster extent
-#' @importFrom raster plot
+#' @importFrom raster extent plot
 #' @importFrom rgeos gIntersection
 #' @importFrom rworldmap getMap
-#' @importFrom sp over
-#' @importFrom sp proj4string
-#' @importFrom grDevices colorRampPalette
-#' @importFrom grDevices rgb
+#' @importFrom sp over proj4string
+#' @importFrom grDevices colorRampPalette rgb
 #' @importFrom methods as
 #' @param biogeo dataTable of the species occurrence including a column with the estimated biogeographical status of points.
 #' @param regional logical, whether the whole world should be plotted as the background or only the region adjacent to the species countries of occurrence.
