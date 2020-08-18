@@ -16,5 +16,8 @@ install_devtools()
 ## Usage
 
 ## Citation
-Please cite as:
-Arle, E. bRacatus: estimating the accuracy and biogeographical status of georeferenced biological data
+
+```{r}
+library(bRacatus)
+citation("braCatus")
+```
