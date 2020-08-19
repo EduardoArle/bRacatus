@@ -19,5 +19,5 @@ install_devtools()
 
 ```{r}
 library(bRacatus)
-citation("braCatus")
+citation("bRacatus")
 ```
