@@ -13,5 +13,5 @@ accuracy(signals)
 The dataFrame with the species occurrence information and an extra column indicating the estimated accuracy of each point.
 }
 \description{
-Estimates the accuracy of each point record.
+Estimates the Accuracy of Each Point Record.
 }

@@ -17,7 +17,8 @@ plotBiogeoStatus(
 )
 }
 \arguments{
-\item{biogeo}{dataTable of the species occurrence including a column with the estimated biogeographical status of points.}
+\item{biogeo}{dataTable of the species occurrence including a 
+column with the estimated biogeographical status of points.}
 
 \item{regional}{logical, whether the whole world should be plotted as the background or only the region adjacent to the species countries of occurrence.}
 

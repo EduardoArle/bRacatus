@@ -75,3 +75,16 @@ NULL
 #' data("signals")
 #' 
 NULL
+
+#'signals example 2
+#'
+#'  A \code{SpatialPolygonsDataFrame} signals example 2
+#'
+#' @name signals_2
+#' @docType data
+#' @keywords examplary object
+#' @examples
+#' 
+#' data("signals_2")
+#' 
+NULL

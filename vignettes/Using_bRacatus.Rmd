@@ -25,12 +25,19 @@ This tutorial aims to guide the user from the installation to the data visualisa
 
 ## Installing the bRacatus from GitHub
 
-The package is available at the GitHub server https://github.com/EduardoArle/bRacatus. To install bRacatus, the devtools package is required, which can be installed and loaded by the following steps.
+The package is available at the GitHub server https://github.com/EduardoArle/bRacatus. To install bRacatus from GitHub, the devtools package is required, which can be installed and loaded by the following steps. 
 
 ```{r, eval = FALSE}
 install.packages ("devtools")
 library (devtools)
 devtools::install_github ("EduardoArle/bRacatus")
+library (bRacatus)
+```
+
+bRacatus is also available on CRAN.
+
+```{r, eval = FALSE}
+install.packages ("bRacatus")
 library (bRacatus)
 ```
 
@@ -53,7 +60,7 @@ plotOcc (pts)
 Running time: < 1s.
 Output: a map showing the occurrence points. 
 
-```{r}
+```{r, warning = FALSE}
 ref_reg <- giftRegions ("Babiana tubulosa")
 ref_reg
 ```
@@ -68,7 +75,7 @@ plotRefReg (ref_reg)
 Running time: < 1s.
 Output: a figure with three occurrence maps, showing the regions where the species is present, native and alien.
 
-```{r}
+```{r, warning = FALSE}
 ref_reg_rast <- rasteriseChecklists (ref_reg)
 ```
 
@@ -130,4 +137,26 @@ plotBiogeoStatus (biogeo)
 Running time: < 1s.
 Output: a map showing the nativeness of the  points in a gradient from most likely alien (0) to most likely native (1).
 
+## Example 2 - GIFT checklist data as reference regions, a more complex example with more records and reference regions.
+
+```{r}
+pts <- getOcc ("Senna bicapsularis")   # Running time: ≈ 7s.
+plotOcc (pts)  # Running time: < 1s.
+```
+
+
+```{r, warning = FALSE}
+ref_reg <- giftRegions ("Senna bicapsularis")   # Running time: ≈ 120s.
+plotRefReg (ref_reg)  # Running time: ≈ 2s.
+```
+
+```{r, warning = FALSE}
+ref_reg_rast <- rasteriseChecklists (ref_reg)   # Running time: ≈ 40s.
+occ_ID <- occID (pts)   # Running time: < 1s.
+ref_reg_ID <- valueID (ref_reg_rast)   # Running time: < 1s.
+```
+
+```{r, eval = FALSE}
+signals <- signalCalculation (ref_reg_ID,occ_ID,biogeo = T)   # Running time: ≈ 18s.
+```
 
