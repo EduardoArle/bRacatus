@@ -20,7 +20,6 @@
 #' @export
 rasteriseChecklists <- function(checklists){
   raster_half_degree <- raster(vals=NA,res=.5)   #create an empty raster with half degree grid
-  raster_half_degree <- projectRaster(raster_half_degree,crs=projection(checklists[[1]]))  #insert same projection as in the checklists
   checklists_raster <- list()
   for(i in 1:length(checklists)) #calculate the prior confiability of occurrence per cell
   {

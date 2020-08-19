@@ -3,12 +3,10 @@
 #' Plot the species occurrences with map background for visualisation
 #'
 #' @importFrom graphics points
-#' @importFrom raster extent
-#' @importFrom raster plot
+#' @importFrom raster extent plot
 #' @importFrom rgeos gIntersection
 #' @importFrom rworldmap getMap
-#' @importFrom sp over
-#' @importFrom sp proj4string
+#' @importFrom sp over proj4string
 #' @param occ dataTable of the species occurrence.
 #' @param regional logical, whether the whole world should be plotted as the background or only the region adjacent to the species countries of occurrence.
 #' @return This function plots the species occurrence
