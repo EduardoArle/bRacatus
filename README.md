@@ -3,7 +3,7 @@
 
 # bRacatus v1.0.0
 
-An R package to estimate the probability of species geographic point occurrence records being native or invasiv and correct or erroneous.
+An R package to estimate the probability of species geographic point occurrence records being native or invasive and correct or erroneous.
 
 ## Installation
 

@@ -21,11 +21,11 @@ giveOcc(
 \item{latitude}{col.name containing the latitude information}
 }
 \value{
-This function standardises the user provided georeferreced 
+This function standardises the user provided georeferenced 
 biological data to be fed into the models.
 }
 \description{
-Prepares user privided georeferrenced biological data for the models
+Prepares user provided georeferenced biological data for the models
 }
 \examples{
 # Create a data.frame containing species names and coordinates

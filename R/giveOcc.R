@@ -1,12 +1,12 @@
 #' Input occurrence data
 #'
-#' Prepares user privided georeferrenced biological data for the models
+#' Prepares user provided georeferenced biological data for the models
 #'
 #' @param  occ_data table containing latitude and longitude
 #' @param  species col.name containing the species information
 #' @param  longitude col.name containing the longitude information
 #' @param  latitude col.name containing the latitude information
-#' @return This function standardises the user provided georeferreced 
+#' @return This function standardises the user provided georeferenced 
 #' biological data to be fed into the models.
 #' @examples
 #' # Create a data.frame containing species names and coordinates

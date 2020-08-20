@@ -6,7 +6,7 @@ bRacatus 1.0.0 (2020-08-18)
   * Added vignette
   * Added NEWS.md
   * Added Travis integration
-  * Adapted code to goodpractice
+  * Adapted code to good practice
   
   
 ### MINOR IMPROVEMENTS
