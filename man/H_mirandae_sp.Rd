@@ -3,9 +3,10 @@
 \docType{data}
 \name{H_mirandae_sp}
 \alias{H_mirandae_sp}
-\title{Hemitriccus mirandae spatialPoints examplary file}
+\title{Hemitriccus mirandae spatialPoints exemplary file}
 \description{
-A \code{SpatialPointsDataFrame} containing the occurrences of Hemitriccus mirandae downloaded from GBIF
+A \code{SpatialPointsDataFrame} containing the occurrences of 
+ Hemitriccus mirandae downloaded from GBIF
 }
 \examples{
 

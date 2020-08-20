@@ -4,11 +4,14 @@
 #'
 #' @importFrom rworldmap getMap
 #' @param  countries vector with one or more country names
-#' @param  biogeo_status vector informing the status of each country: alien, native or unknown
-#' @return This function provides shapefiles of countries with the correspondent biogeographic status of the species.
+#' @param  biogeo_status vector informing the status of each country: alien, 
+#' native or unknown
+#' @return This function provides shapefiles of countries with the 
+#' correspondent biogeographic status of the species.
 #' @examples
-#' country_checklist <- countryChecklist(c("Brazil","Argentina","Uruguay","Paraguay"),
-#'                                       c("native","alien","unknown","native"))
+#' country_checklist <- countryChecklist(
+#'                          c("Brazil","Argentina","Uruguay","Paraguay"),
+#'                          c("native","alien","unknown","native"))
 #' @export
 
 countryChecklist <- function(countries, biogeo_status) {
@@ -17,7 +20,7 @@ countryChecklist <- function(countries, biogeo_status) {
   }
   world <- getMap()
   features <- numeric()
-  for (i in 1:length(countries)) {
+  for (i in seq_along(countries)) {
     a <- grep(countries[i], world$NAME)
     if (length(a) == 0) {
       stop(paste0(countries[i], 
@@ -25,7 +28,7 @@ countryChecklist <- function(countries, biogeo_status) {
     }
     if (length(a) > 1) {
       stop(paste0(countries[i],
-                  " corresponds to two or more countries. Check 'availableCountries()'"))
+    " corresponds to two or more countries. Check 'availableCountries()'"))
     }
     features[i] <- a
   }

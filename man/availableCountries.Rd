@@ -7,7 +7,8 @@
 availableCountries()
 }
 \value{
-This function provides a list of countries and entities names available with rworldmaps for checklists
+This function provides a list of countries and entities names 
+available with rworldmaps for checklists
 }
 \description{
 List of countries and entities names for checklists

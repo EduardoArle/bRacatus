@@ -10,10 +10,14 @@ getOcc(species)
 \item{species}{character, species binomial name}
 }
 \value{
-This function downloads all records for a species from GBIF that have coordinates info. If necessary it loops several times to overcome the limit of 200,000 occurrences inposed by occ_search function. It returns a data table.
+This function downloads all records for a species from GBIF that 
+have coordinates info. If necessary it loops several times to overcome the 
+limit of 200,000 occurrences inposed by occ_search function. It returns a 
+data table.
 }
 \description{
-Downloads gbif records iterating when necessary to overcome the limitation of 200,000 records
+Downloads gbif records iterating when necessary to overcome the limitation 
+of 200,000 records
 }
 \examples{
 sps_occurrence <- getOcc("Hemitriccus mirandae")

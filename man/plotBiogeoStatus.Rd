@@ -20,9 +20,12 @@ plotBiogeoStatus(
 \item{biogeo}{dataTable of the species occurrence including a 
 column with the estimated biogeographical status of points.}
 
-\item{regional}{logical, whether the whole world should be plotted as the background or only the region adjacent to the species countries of occurrence.}
+\item{regional}{logical, whether the whole world should be plotted as the 
+background or only the region adjacent to the species countries of 
+occurrence.}
 
-\item{reg.by}{character, by countries where there are points or by area where the points are located.}
+\item{reg.by}{character, by countries where there are points or by area 
+where the points are located.}
 
 \item{borders}{logical, whether country limits should be plotted.}
 
@@ -30,15 +33,18 @@ column with the estimated biogeographical status of points.}
 
 \item{col.bg}{colour for plotting the background.}
 
-\item{plot.range}{logical, if TRUE, range maps should be provided as a shapefile in argument range.}
+\item{plot.range}{logical, if TRUE, range maps should be provided as 
+a shapefile in argument range.}
 
 \item{range}{shapefile, species range map.}
 
 \item{box}{logical, includes frame with coordinates locations.}
 }
 \value{
-This function plots the species occurrence with estimated biogeographical status of all points.
+This function plots the species occurrence with estimated 
+biogeographical status of all points.
 }
 \description{
-Plot the species occurrences showing the estimated biogeographical status of points.
+Plot the species occurrences showing the estimated biogeographical status 
+of points.
 }

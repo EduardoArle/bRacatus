@@ -1,6 +1,7 @@
 Package: bRacatus
 Title: Estimates the Accuracy and the Biogeographical Status of Point Occurrence Records
 Version: 1.0.0
+Language: en-GB
 Authors@R: person("Eduardo", "Arlé", email = "eduardo.arle@idiv.de", role = c("aut", "cre"))
 Description: Uses reference regions, namely checklists and range maps, to estimate the accuracy and the biogeographical status of point occurrence records.
 Depends: R (>= 3.5.0)

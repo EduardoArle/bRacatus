@@ -10,7 +10,8 @@ occID(occ)
 \item{occ}{dataTable of the species occurrence.}
 }
 \value{
-A dataFrame including the original data in the input and the cellID of each point record
+A dataFrame including the original data in the input and the 
+cellID of each point record
 }
 \description{
 Extracts cellIDs of presence locations

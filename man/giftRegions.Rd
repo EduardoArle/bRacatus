@@ -9,12 +9,19 @@ giftRegions(species, min_size = 1000, max_size = 1e+11)
 \arguments{
 \item{species}{character, species binomial name}
 
-\item{min_size}{numeric, minimum size of checklists (in km2) to be included in the analysis.}
+\item{min_size}{numeric, minimum size of checklists (in km2) to be included 
+in the analysis.}
 
-\item{max_size}{numeric, maximum size of checklists (in km2) to be included in the analysis.}
+\item{max_size}{numeric, maximum size of checklists (in km2) to be included 
+in the analysis.}
 }
 \value{
-This function returns a list containing three shapefiles derived by information supplied by GIFT. "regs" includes all the features corresponding to regions where the species has been listed as present. "regs_native" includes all the features corresponding to regions where the species has been listed as native. And "regs_alien" includes all the features corresponding to regions where the species has been listed as alien.
+This function returns a list containing three shapefiles derived by 
+information supplied by GIFT. "regs" includes all the features corresponding
+to regions where the species has been listed as present. "regs_native" 
+includes all the features corresponding to regions where the species has 
+been listed as native. And "regs_alien" includes all the features 
+corresponding to regions where the species has been listed as alien.
 }
 \description{
 Gets regions listed by GIFT for plant species

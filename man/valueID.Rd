@@ -7,16 +7,19 @@
 valueID(checklists_raster)
 }
 \arguments{
-\item{checklists_raster}{List containing rasterised checklists for presence, native and alien reference regions}
+\item{checklists_raster}{List containing rasterised checklists for 
+presence, native and alien reference regions}
 }
 \value{
-A list with cell IDs and signal values for all cells where the species is present, native and alien.
+A list with cell IDs and signal values for all cells where the 
+species is present, native and alien.
 }
 \description{
 Extracts signal values and ID from each cell
 }
 \examples{
-country_checklist <- countryChecklist(c("Brazil","Argentina","Uruguay","Paraguay"),
+country_checklist <- countryChecklist(
+c("Brazil","Argentina","Uruguay","Paraguay"),
 c("native","alien","unknown","native"))
 
 rasterised_checklist <- rasteriseChecklists(country_checklist)

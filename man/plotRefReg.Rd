@@ -7,10 +7,16 @@
 plotRefReg(ref_reg)
 }
 \arguments{
-\item{ref_reg}{list containing three shapefiles derived by information supplied by GIFT. "regs" includes all the features corresponding to regions where the species has been listed as present. "regs_native" includes all the features corresponding to regions where the species has been listed as native. And "regs_alien" includes all the features corresponding to regions where the species has been listed as alien..}
+\item{ref_reg}{list containing three shapefiles derived by information 
+supplied by GIFT. "regs" includes all the features corresponding to regions 
+where the species has been listed as present. "regs_native" includes all 
+the features corresponding to regions where the species has been listed as 
+native. And "regs_alien" includes all the features corresponding to regions 
+where the species has been listed as alien..}
 }
 \value{
-This function plots three maps of the species occurrence, showing the regions where it is present, native and alien.
+This function plots three maps of the species occurrence, showing 
+the regions where it is present, native and alien.
 }
 \description{
 Plot the species reference regions with map background for visualisation

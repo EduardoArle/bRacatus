@@ -7,14 +7,21 @@
 signalCalculation(ref_reg_ID, occ_ID, biogeo = TRUE)
 }
 \arguments{
-\item{ref_reg_ID}{output of the function valueID. A list of dataFrames including the ID of each cell within checklists and the a priori confidence values for presence, nativeness and alienness.}
+\item{ref_reg_ID}{output of the function valueID. A list of data.frames 
+including the ID of each cell within checklists and the a priori confidence 
+values for "presence", "nativeness" and "alienness".}
 
-\item{occ_ID}{output of the function occID. A dataFrame including the cellID of each point record.}
+\item{occ_ID}{output of the function occID. A data.frame including the 
+cellID of each point record.}
 
-\item{biogeo}{logical, whether the biogeographical status indices should be calculated or not. Default is true, however at least the native reference regions must be included in the data.}
+\item{biogeo}{logical, whether the biogeographical status indices should 
+be calculated or not. Default is true, however at least the native 
+reference regions must be included in the data.}
 }
 \value{
-The dataFrame occID whith an extra column containing the presense signals for each point. If biogeo=TRUE, the dataFrame also includes the nativeness and alienness indices.
+The data.frame occID with an extra column containing the presence 
+signals for each point. If biogeo=TRUE, the data.frame also includes the 
+nativeness and alienness indices.
 }
 \description{
 Calculates signals sent from reference regions to point records.

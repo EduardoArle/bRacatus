@@ -14,14 +14,23 @@ rangeMaps(
 \arguments{
 \item{range}{SpatialPolygonsDataFrame}
 
-\item{biogeo}{character, name of the column containing information on biogeographic status of features}
+\item{biogeo}{character, name of the column containing information on 
+biogeographic status of features}
 
-\item{native}{character, entries in biogeo column representing the native range of the species}
+\item{native}{character, entries in biogeo column representing the native 
+range of the species}
 
-\item{alien}{character, entries in biogeo column representing the alien range of the species}
+\item{alien}{character, entries in biogeo column representing the alien 
+range of the species}
 }
 \value{
-This function returns a list containing three shapefiles derived from information supplied by the species range map in a shapefile format. "regs" includes all the features corresponding to regions where the species has been listed as present. "regs_native" includes all the features corresponding to regions where the species has been listed as native. And "regs_alien" includes all the features corresponding to regions where the species has been listed as alien.
+This function returns a list containing three shapefiles derived 
+from information supplied by the species range map in a shapefile format. 
+"regs" includes all the features corresponding to regions where the species 
+has been listed as present. "regs_native" includes all the features 
+corresponding to regions where the species has been listed as native. 
+And "regs_alien" includes all the features corresponding to regions where 
+the species has been listed as alien.
 }
 \description{
 Prepares range maps input by the user to be used as reference regions

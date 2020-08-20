@@ -11,9 +11,10 @@
 #' 
 NULL
 
-#'Hemitriccus mirandae spatialPoints examplary file
+#'Hemitriccus mirandae spatialPoints exemplary file
 #'
-#'  A \code{SpatialPointsDataFrame} containing the occurrences of Hemitriccus mirandae downloaded from GBIF
+#'  A \code{SpatialPointsDataFrame} containing the occurrences of 
+#'  Hemitriccus mirandae downloaded from GBIF
 #'
 #' @name H_mirandae_sp
 #' @docType data
@@ -86,5 +87,18 @@ NULL
 #' @examples
 #' 
 #' data("signals_2")
+#' 
+NULL
+
+#'signals example 3
+#'
+#'  A \code{SpatialPolygonsDataFrame} signals example 3
+#'
+#' @name signals_3
+#' @docType data
+#' @keywords examplary object
+#' @examples
+#' 
+#' data("signals_3")
 #' 
 NULL
