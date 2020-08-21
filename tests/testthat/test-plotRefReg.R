@@ -1,0 +1,12 @@
+library(testthat)
+library(checkmate)
+context("bRacatus")
+
+input_data <- giftRegions ("Babiana tubulosa")
+
+test_that("Expected data structure",{
+  expect_equal(class(input_data),"list")
+  expect_true("Presence" %in% names(input_data))
+  expect_true("Native" %in% names(input_data))
+  expect_true("Alien" %in% names(input_data))
+})
