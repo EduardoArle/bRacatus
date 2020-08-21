@@ -1,5 +1,5 @@
-library(testthat)
-library(checkmate)
+#' @importFrom testthat test_that expect_equal
+#' 
 context("bRacatus")
 
 input_data <- "Hemitriccus mirandae"

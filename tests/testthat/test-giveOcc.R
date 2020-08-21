@@ -1,5 +1,5 @@
-library(testthat)
-library(checkmate)
+#' @importFrom testthat test_that expect_equal expect_true
+#' 
 context("bRacatus")
 
 input_data <-  data.frame(sps=rep("Equus acephalus",10),
