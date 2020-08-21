@@ -24,8 +24,3 @@ devtools::release()
 # Submit to Ropensci: https://github.com/ropensci/software-review 
 
 
-###
-
-update_wordlist(pkg = "C:/Users/ca13kute/Documents/bRacatus/Package/bRacatus", vignettes = TRUE, confirm = TRUE)
-get_wordlist(pkg = "C:/Users/ca13kute/Documents/bRacatus/Package/bRacatus")
-

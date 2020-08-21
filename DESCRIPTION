@@ -6,7 +6,8 @@ Authors@R: c(person("Eduardo", "Arlé", email = "eduardo.arle@idiv.de", role = c
              person("Alexander","Zizka",email = "alexaner.zizka@idiv.de", role = "ctb"))
 Description: Uses reference regions, namely checklists and range maps, to estimate the accuracy and the biogeographical status of point occurrence records.
 Depends: R (>= 3.5.0)
-Imports: data.table,
+Imports: checkmate,
+         data.table,
          geojsonio,
          graphics,
          grDevices,
@@ -19,7 +20,8 @@ Imports: data.table,
          rgeos,
          rworldmap,
          sp,
-         stats
+         stats,
+         testthat
 License: GPL (>= 2)
 Encoding: UTF-8
 URL: https://github.com/EduardoArle/bRacatus
