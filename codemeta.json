@@ -6,7 +6,7 @@
   "@type": "SoftwareSourceCode",
   "identifier": "bRacatus",
   "description": "Uses reference regions, namely checklists and range maps, to estimate the accuracy and the biogeographical status of point occurrence records.",
-  "name": "bRacatus: Estimates the Accuracy and the Biogeographical Status of Point Occurrence Records",
+  "name": "bRacatus: Estimating the Accuracy and the Biogeographical Status of Point Occurrence Records",
   "codeRepository": "https://github.com/EduardoArle/bRacatus",
   "license": "https://spdx.org/licenses/GPL-2.0",
   "version": "1.0.0",
@@ -24,7 +24,14 @@
       "email": "eduardo.arle@idiv.de"
     }
   ],
-  "contributor": {},
+  "contributor": [
+    {
+      "@type": "Person",
+      "givenName": "Alexander",
+      "familyName": "Zizka",
+      "email": "alexaner.zizka@idiv.de"
+    }
+  ],
   "copyrightHolder": {},
   "funder": {},
   "maintainer": [
@@ -211,7 +218,7 @@
   ],
   "releaseNotes": "https://github.com/EduardoArle/bRacatus/blob/master/NEWS.md",
   "readme": "https://github.com/EduardoArle/bRacatus/blob/master/README.md",
-  "fileSize": "453.412KB",
+  "fileSize": "776.671KB",
   "developmentStatus": "https://www.repostatus.org/#active",
   "contIntegration": "https://travis-ci.org/EduardoArle/bRacatus",
   "citation": [
@@ -275,5 +282,6 @@
         }
       }
     }
-  ]
+  ],
+  "issueTracker": "https://github.com/EduardoArle/bRacatus/issues"
 }
