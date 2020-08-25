@@ -214,11 +214,23 @@
       "@type": "SoftwareApplication",
       "identifier": "stats",
       "name": "stats"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "testthat",
+      "name": "testthat",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=testthat"
     }
   ],
   "releaseNotes": "https://github.com/EduardoArle/bRacatus/blob/master/NEWS.md",
   "readme": "https://github.com/EduardoArle/bRacatus/blob/master/README.md",
-  "fileSize": "776.671KB",
+  "fileSize": "779.167KB",
   "developmentStatus": "https://www.repostatus.org/#active",
   "contIntegration": "https://travis-ci.org/EduardoArle/bRacatus",
   "citation": [
