@@ -6,8 +6,7 @@ Authors@R: c(person("Eduardo", "Arlé", email = "eduardo.arle@idiv.de", role = c
              person("Alexander","Zizka",email = "alexaner.zizka@idiv.de", role = "ctb"))
 Description: Uses reference regions, namely checklists and range maps, to estimate the accuracy and the biogeographical status of point occurrence records.
 Depends: R (>= 3.5.0)
-Imports: checkmate,
-         data.table,
+Imports: data.table,
          geojsonio,
          graphics,
          grDevices,
