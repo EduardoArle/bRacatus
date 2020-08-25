@@ -24,5 +24,6 @@ addons:
     - libv8-dev
     - netcdf-bin
     - libprotobuf-dev
+    - protobuf-compiler
     - libjq-dev
 
