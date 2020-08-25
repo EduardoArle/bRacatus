@@ -23,5 +23,6 @@ addons:
     - libgdal-dev
     - libv8-dev
     - netcdf-bin
+    - libprotobuf-dev
     - libjq-dev
 
