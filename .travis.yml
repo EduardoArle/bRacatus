@@ -15,6 +15,7 @@ addons:
   apt:
     sources:
       - sourceline: 'ppa:ubuntugis/ppa'
+      - sourceline: 'ppa:opencpu/jq'
     packages:
     - libudunits2-dev
     - libproj-dev
@@ -22,3 +23,7 @@ addons:
     - libgdal-dev
     - libv8-dev
     - netcdf-bin
+    - libprotobuf-dev
+    - protobuf-compiler
+    - libjq-dev
+
