@@ -13,6 +13,8 @@
 #' occurrence.
 #' @return This function plots the species occurrence
 #' @examples
+#' 
+#' \dontrun{
 #' occ <- getOcc("Hemitriccus mirandae")
 #' 
 #' plotOcc(occ)
@@ -25,8 +27,6 @@
 #' occ <- giveOcc(test_data,"sps","lon","lat")
 #' 
 #' plotOcc(occ)
-#' 
-#' \dontrun{
 #' # Plot occurrences with the whole world as background
 #' 
 #' plotOcc(occ,regional=FALSE)
