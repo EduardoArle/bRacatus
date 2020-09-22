@@ -15,6 +15,8 @@
 #' the regions where it is present, native and alien.
 #' @export
 plotRefReg <- function(ref_reg) {
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
   world <- getMap(resolution = "low")
   
   par(mfrow=c(2,2),mar=c(0.6,0.6,0.6,0.6))

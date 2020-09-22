@@ -14,7 +14,7 @@
 #' @return This function plots the species occurrence
 #' @examples
 #' 
-#' \dontrun{
+#' \donttest{
 #' occ <- getOcc("Hemitriccus mirandae")
 #' 
 #' plotOcc(occ)
@@ -34,6 +34,8 @@
 #' 
 #' @export
 plotOcc <- function(occ, regional = TRUE) {
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
   world <- getMap(resolution = "low")
   occ_sp <- occSpatialPoints(occ)
   if(regional==TRUE){

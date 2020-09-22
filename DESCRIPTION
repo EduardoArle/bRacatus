@@ -1,10 +1,10 @@
 Package: bRacatus
-Title: Estimating the Accuracy and the Status of Point Occurrence Records
+Title: "Estimating the Accuracy and the Status of Point Occurrence Records"
 Version: 1.0.0
 Language: en-GB
 Authors@R: c(person("Eduardo", "Arlé", email = "eduardo.arle@idiv.de", role = c("aut", "cre")),
              person("Alexander","Zizka",email = "alexaner.zizka@idiv.de", role = "ctb"))
-Description: Uses reference regions, namely checklists and range maps, to estimate the accuracy and the status of point occurrence records.
+Description: Automated assessment of accuracy and geographical status of georeferenced biological data. The methods rely on reference regions, namely checklists and range maps. Includes functions to obtain data from the Global Biodiversity Information Facility and from the Global Inventory of Floras and Traits. Alternatively, the user can input their own data. Furthermore, provides easy visualisation of the data and the results through the plotting functions. Especially suited for large datasets. The reference for the methodology is: Arlé et al. (under review).
 Depends: R (>= 3.5.0)
 Imports: data.table,
          geojsonio,

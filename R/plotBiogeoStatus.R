@@ -32,6 +32,8 @@ plotBiogeoStatus <- function(biogeo, regional = TRUE, reg.by = "country",
                              borders = TRUE, col.features = "khaki", 
                              col.bg = "azure2", plot.range = FALSE, 
                              range = NULL, box = FALSE) {
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
   world <- getMap(resolution = "low")
   biogeo_sp <- occSpatialPoints(biogeo)
   if(regional){

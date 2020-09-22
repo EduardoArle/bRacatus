@@ -21,7 +21,7 @@ Plot the species occurrences with map background for visualisation
 }
 \examples{
 
-\dontrun{
+\donttest{
 occ <- getOcc("Hemitriccus mirandae")
 
 plotOcc(occ)

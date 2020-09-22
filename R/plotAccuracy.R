@@ -31,6 +31,8 @@ plotAccuracy <- function(acc, regional = TRUE, reg.by = "country",
                          borders = TRUE, col.features = "khaki", 
                          col.bg = "azure2", plot.range = FALSE, 
                          range = NULL, box = FALSE) {
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
   world <- getMap(resolution = "low")
   acc_sp <- occSpatialPoints(acc)
   if(regional){
