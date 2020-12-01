@@ -4,24 +4,23 @@
 \alias{signalCalculation}
 \title{signalCalculation}
 \usage{
-signalCalculation(ref_reg_ID, occ_ID, biogeo = TRUE)
+signalCalculation(ref_reg, pts, biogeo = TRUE)
 }
 \arguments{
-\item{ref_reg_ID}{output of the function valueID. A list of data.frames 
-including the ID of each cell within checklists and the a priori confidence 
-values for "presence", "nativeness" and "alienness".}
+\item{ref_reg}{a list of shapefiles containing checklist regions as 
+"presence", "native", and "alien" categories. These can be original 
+checklists, or checklists derived from renge maps.}
 
-\item{occ_ID}{output of the function occID. A data.frame including the 
-cellID of each point record.}
+\item{pts}{data.frame containing the point records and their coordianates.}
 
 \item{biogeo}{logical, whether the biogeographical status indices should 
 be calculated or not. Default is true, however at least the native 
 reference regions must be included in the data.}
 }
 \value{
-The data.frame occID with an extra column containing the presence 
-signals for each point. If biogeo=TRUE, the data.frame also includes the 
-nativeness and alienness indices.
+The data.frame of species occurrences with extra columns containing
+the location ID and presence signals for each point. If biogeo=TRUE, the 
+data.frame also includes the nativeness and alienness indices.
 }
 \description{
 Calculates signals sent from reference regions to point records.

@@ -3,20 +3,23 @@
 #' Calculates signals sent from reference regions to point records.
 #'
 #' @importFrom raster extract
-#' @param ref_reg_ID output of the function valueID. A list of data.frames 
-#' including the ID of each cell within checklists and the a priori confidence 
-#' values for "presence", "nativeness" and "alienness".
-#' @param occ_ID output of the function occID. A data.frame including the 
-#' cellID of each point record.
+#' @param ref_reg a list of shapefiles containing checklist regions as 
+#' "presence", "native", and "alien" categories. These can be original 
+#' checklists, or checklists derived from renge maps.
+#' @param pts data.frame containing the point records and their coordianates.
 #' @param biogeo logical, whether the biogeographical status indices should 
 #' be calculated or not. Default is true, however at least the native 
 #' reference regions must be included in the data. 
-#' @return The data.frame occID with an extra column containing the presence 
-#' signals for each point. If biogeo=TRUE, the data.frame also includes the 
-#' nativeness and alienness indices.
+#' @return The data.frame of species occurrences with extra columns containing
+#' the location ID and presence signals for each point. If biogeo=TRUE, the 
+#' data.frame also includes the nativeness and alienness indices.
 #'
 #' @export
-signalCalculation <- function(ref_reg_ID, occ_ID, biogeo = TRUE) {
+signalCalculation <- function(ref_reg, pts, biogeo = TRUE) {
+  
+  ref_reg_rast <- rasteriseChecklists(ref_reg)
+  ref_reg_ID <- valueID (ref_reg_rast)
+  occ_ID <- occID (pts)
   
   sps_range_ID <- ref_reg_ID$Presence$cell_ID  
   #IDs of the cells overlapping reference regions

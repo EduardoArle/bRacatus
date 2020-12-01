@@ -23,18 +23,7 @@ library(bRacatus)
 
 This tutorial aims to guide the user from the installation to the data visualisation of bRacatus. We will walk the user through three examples. The first example uses GIFT checklist data as reference regions. Afterwards, a second example, containing data that are more complex, will be introduced to compare the functions’ performance when dealing with a bigger data volume, still using the GIFT API. Finally, the third example uses range maps as reference regions. bRacatus allows users to input their own data or to obtain these data from online repositories. In this tutorial, we will show how to use GBIF-facilitated point data and checklists provided by GIFT. We will also show an example in which range maps are input by the user. We ran all tests in a computer with 8GB of RAM, the execution times of each function may vary depending on the computer configuration, as well as on the internet connection for the functions requesting data through an API.
 
-## Installing the bRacatus from GitHub
-
-The package is available at the GitHub server https://github.com/EduardoArle/bRacatus. To install bRacatus from GitHub, the devtools package is required, which can be installed and loaded by the following steps. 
-
-```{r, eval = FALSE}
-install.packages ("devtools")
-library (devtools)
-devtools::install_github ("EduardoArle/bRacatus")
-library (bRacatus)
-```
-
-bRacatus is also available on CRAN.
+## Installing bRacatus 
 
 ```{r, eval = FALSE}
 install.packages ("bRacatus")
@@ -50,14 +39,14 @@ pts <- getOcc ("Babiana tubulosa")
 head(pts)[,c(1:4)]
 ```
 
-Running time: < 1s.
+Running time: ≈ 1s.
 Output: a data.frame containing georeferenced records from GBIF.
 
 ```{r}
 plotOcc (pts)
 ```
 
-Running time: < 1s.
+Running time: ≈ 1s.
 Output: a map showing the occurrence points. 
 
 ```{r, warning = FALSE}
@@ -72,33 +61,15 @@ Output: a list with three SpatialPolygonsDataFrame objects, one containing all t
 plotRefReg (ref_reg)
 ```
 
-Running time: < 1s.
+Running time: ≈ 2s.
 Output: a figure with three occurrence maps, showing the regions where the species is present, native and alien.
-
-```{r, warning = FALSE}
-ref_reg_rast <- rasteriseChecklists (ref_reg)
-```
-
-Running time: ≈ 6s.
-Output: A list containing data on the  checklists, categorised as "Presence", "Native" or "Alien". These are stored in half a degree rasters and provide information on the prior confidence of detection in each cell.
-
-```{r}
-occ_ID <- occID (pts)
-```
-
-Running time: < 1s.
-Output: a dataFrame containing the original data and the cellID of each point record.
-
-```{r}
-ref_reg_ID <- valueID (ref_reg_rast)
-```
-
-Running time: < 1s.
-Output: a list with cell IDs and a priori confidence values for all cells where the species is present, native and alien.
 
 ```{r, eval = FALSE}
 signals <- signalCalculation (ref_reg_ID,occ_ID,biogeo = TRUE)
 ```
+
+Running time: ≈ 2s.
+Output: The data.frame of species occurrences with extra columns containing the location ID and presence signals for each point. If biogeo=TRUE, the  data.frame also includes the nativeness and alienness indices.
 
 ```{r, echo = FALSE}
 data(signals)
@@ -144,20 +115,13 @@ pts <- getOcc ("Senna bicapsularis")   # Running time: ≈ 7s.
 plotOcc (pts)  # Running time: < 1s.
 ```
 
-
 ```{r, warning = FALSE}
 ref_reg <- giftRegions ("Senna bicapsularis")   # Running time: ≈ 120s.
 plotRefReg (ref_reg)  # Running time: ≈ 2s.
 ```
 
-```{r, warning = FALSE}
-ref_reg_rast <- rasteriseChecklists (ref_reg)   # Running time: ≈ 40s.
-occ_ID <- occID (pts)   # Running time: < 1s.
-ref_reg_ID <- valueID (ref_reg_rast)   # Running time: < 1s.
-```
-
 ```{r, eval = FALSE}
-signals_2 <- signalCalculation (ref_reg_ID,occ_ID,biogeo = TRUE)   # Running time: ≈ 18s.
+signals_2 <- signalCalculation (ref_reg,pts,biogeo = TRUE)   # Running time: ≈ 250s.
 ```
 
 ```{r, echo = FALSE}
@@ -211,17 +175,11 @@ range_map_ref_reg <- rangeMaps(ref_reg)  # Running time: < 1s.
 plotRefReg (range_map_ref_reg)  # Running time: < 1s.
 ```
 
-```{r}
-ref_reg_rast <- rasteriseChecklists (range_map_ref_reg) # Running time: ≈ 10s.
-occ_ID <- occID (pts3)   # Running time: < 1s.
-ref_reg_ID <- valueID (ref_reg_rast)   # Running time: < 1s.
-```
-
 ```{r, eval = FALSE}
-signals_3 <- signalCalculation (ref_reg_ID,occ_ID,biogeo = TRUE)   # Running time: ≈ 3s.
+signals_3 <- signalCalculation (range_map_ref_reg,pts3,biogeo = TRUE)   # Running time: ≈ 40s.
 ```
 
-```{r}
+```{r, echo = FALSE}
 data(signals_3)
 ```
 

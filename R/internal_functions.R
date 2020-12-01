@@ -1,6 +1,7 @@
 #' @importFrom data.table rbindlist
-#' @importFrom raster extract
-#' 
+#' @importFrom raster extract raster projectRaster projection crop
+#' @importFrom raster rasterize extend stack extent
+#'
 getGbifDecade <- function(species){
   pts_1001_1900 <- occ_search(scientificName=species,  
                               #download gbif records per period
@@ -71,21 +72,62 @@ getGbifMonth <- function(species,year){
   return(pts_month2)
 }
 
-valueID <- function(checklists_raster){
-  ID_prob <- list()
-  for(i in seq_along(checklists_raster))
+occID <- function(occ) {
+  occ_sp <- occSpatialPoints(occ)
+  ID <- raster(res = 1/2)
+  ID[] <- c(seq_len(length(ID)))
+  ID_points <- extract(ID, occ_sp)
+  occ$ID_points <- ID_points
+  return(occ)
+}
+
+rasteriseChecklists <- function(checklists){
+  raster_half_degree <- raster(vals=NA,res=.5)   
+  #create an empty raster with half degree grid
+  checklists_raster <- list()
+  for(i in seq_along(checklists)) 
+    #calculate the prior confiability of occurrence per cell
   {
-    cell_ID <- which(checklists_raster[[i]][]!=0)
-    prob <- checklists_raster[[i]][which(checklists_raster[[i]][]!=0)]
-    ID_prob[[i]] <- data.frame(cell_ID=cell_ID,prob=prob)
+    if(nrow(checklists[[i]])!=0){
+      layers <- list()
+      for(j in seq_len(nrow(checklists[[i]])))
+      {
+        raster_cut <- crop(raster_half_degree,
+                           extent(checklists[[i]][j,])+c(-2,2,-2,2))
+        raster1 <- rasterize(checklists[[i]][j,],raster_cut,getCover=TRUE) 
+        #rasterise the checklists #count also very small features
+        raster1[] <- ifelse(raster1[]>0,1,NA)
+        raster2 <- extend(raster1,raster_half_degree)
+        raster2[] <- ifelse(is.na(raster2[]),0,
+                            1/length(which(!is.na(raster2[]))))
+        layers[[j]] <- raster2
+      }
+    }else{
+      layers <- raster(vals=0,res=.5)
+    }
+    
+    inv_raster <- lapply(layers,function(x){1-x}) 
+    #invert the values in the raster to calculate the probability of not occurring
+    
+    if(length(inv_raster)>1){
+      checklists_raster[[i]] <- 1-prod(stack(inv_raster))  
+      #calculate the combined prior confiability of occurrence 
+      #according to the formula: p = 1-(pn1*pn2 … pnn)
+    }else{
+      checklists_raster[[i]] <- layers[[1]]
+    }
+  }
+  names(checklists_raster) <- names(checklists)
+  return(checklists_raster)
+}
+
+valueID <- function(checklists_raster) {
+  ID_prob <- list()
+  for (i in seq_along(checklists_raster)) {
+    cell_ID <- which(checklists_raster[[i]][] != 0)
+    prob <- checklists_raster[[i]][which(checklists_raster[[i]][] != 0)]
+    ID_prob[[i]] <- data.frame(cell_ID = cell_ID, prob = prob)
   }
   names(ID_prob) <- names(checklists_raster)
   return(ID_prob)
-}
-
-occID <- function(occ_sp){
-  ID <- bRacatus::ID_raster
-  ID_points <- extract(ID_raster,occ_sp)
-  pointsID <- cbind(occ_sp@data,ID_points=ID_points)
-  return(pointsID)
 }
