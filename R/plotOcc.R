@@ -4,7 +4,7 @@
 #'
 #' @importFrom graphics points
 #' @importFrom raster extent plot
-#' @importFrom rgeos gIntersection
+#' @importFrom rgeos gIntersection gBuffer
 #' @importFrom rworldmap getMap
 #' @importFrom sp over proj4string
 #' @param occ dataTable of the species occurrence.
@@ -37,8 +37,9 @@ plotOcc <- function(occ, regional = TRUE) {
   oldpar <- par(no.readonly = TRUE)
   on.exit(par(oldpar))
   world <- getMap(resolution = "low")
+  world <- suppressWarnings(gBuffer(world, byid = TRUE, width = 0))
   occ_sp <- occSpatialPoints(occ)
-  if(regional==TRUE){
+  if(regional == TRUE){
     countries <- unique(over(occ_sp,world)$NAME)
     countries <- world[world$NAME %in% countries,]
     CP <- as(extent(countries), "SpatialPolygons")

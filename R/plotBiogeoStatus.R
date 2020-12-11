@@ -6,7 +6,7 @@
 #' @importFrom graphics points par
 #' @importFrom plotfunctions gradientLegend
 #' @importFrom raster extent plot
-#' @importFrom rgeos gIntersection
+#' @importFrom rgeos gIntersection gBuffer
 #' @importFrom rworldmap getMap
 #' @importFrom sp over proj4string
 #' @importFrom grDevices colorRampPalette rgb
@@ -35,6 +35,7 @@ plotBiogeoStatus <- function(biogeo, regional = TRUE, reg.by = "country",
   oldpar <- par(no.readonly = TRUE)
   on.exit(par(oldpar))
   world <- getMap(resolution = "low")
+  world <- suppressWarnings(gBuffer(world, byid = TRUE, width = 0))
   biogeo_sp <- occSpatialPoints(biogeo)
   if(regional){
     if(reg.by=="country"){

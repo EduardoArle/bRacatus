@@ -5,7 +5,7 @@
 #' @importFrom graphics points par text
 #' @importFrom plotfunctions gradientLegend
 #' @importFrom raster extent plot
-#' @importFrom rgeos gIntersection
+#' @importFrom rgeos gIntersection gBuffer
 #' @importFrom rworldmap getMap
 #' @importFrom sp over proj4string
 #' @importFrom grDevices colorRampPalette rgb
@@ -34,6 +34,7 @@ plotAccuracy <- function(acc, regional = TRUE, reg.by = "country",
   oldpar <- par(no.readonly = TRUE)
   on.exit(par(oldpar))
   world <- getMap(resolution = "low")
+  world <- suppressWarnings(gBuffer(world, byid = TRUE, width = 0))
   acc_sp <- occSpatialPoints(acc)
   if(regional){
     if(reg.by=="country"){

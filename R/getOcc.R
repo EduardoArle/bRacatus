@@ -4,7 +4,6 @@
 #' of 200,000 records
 #'
 #' @importFrom rgbif occ_search
-#' @importFrom data.table as.data.table
 #' @param  species character, species binomial name
 #' @return This function downloads all records for a species from GBIF that 
 #' have coordinates info. If necessary it loops several times to overcome the 
@@ -14,14 +13,25 @@
 #' sps_occurrence <- getOcc("Hemitriccus mirandae")
 #' @export
 getOcc <- function(species) {
-  gbif_rec <- occ_search(scientificName = species, limit = 2e+05, 
-                  hasCoordinate = TRUE)  #download only points with coordinates
-  if (!is.null(nrow(gbif_rec[[3]]))) {
-    if (nrow(gbif_rec[[3]]) == 2e+05) {
+  gbif_rec <- try(suppressWarnings(occ_search(scientificName = species,
+                                              limit = 2e+05, 
+                                              hasCoordinate = TRUE)),
+                  silent = TRUE)
+  
+  if(class(gbif_rec) == "try-error"){
+   
+    stop("GBIF database not accessible due to connection issues.")
+    
+  }else{
+    
+    if (!is.null(nrow(gbif_rec[[3]]))) {
+      if (nrow(gbif_rec[[3]]) == 2e+05) {
 # if there are more than 200,000 records, it's necessary to download per parts
-      gbif_rec[[3]] <- getGbifDecade(species)
+        gbif_rec[[3]] <- getGbifDecade(species)
+      }
     }
+    gbif <- as.data.frame(gbif_rec[[3]])
   }
-  gbif <- as.data.table(gbif_rec[[3]])
+  
   return(gbif)
 }

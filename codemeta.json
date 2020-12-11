@@ -9,7 +9,7 @@
   "name": "bRacatus: Estimating the Accuracy and the Status of Point Occurrence Records",
   "codeRepository": "https://github.com/EduardoArle/bRacatus",
   "license": "https://spdx.org/licenses/GPL-2.0",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -214,23 +214,11 @@
       "@type": "SoftwareApplication",
       "identifier": "stats",
       "name": "stats"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "testthat",
-      "name": "testthat",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=testthat"
     }
   ],
   "releaseNotes": "https://github.com/EduardoArle/bRacatus/blob/master/NEWS.md",
   "readme": "https://github.com/EduardoArle/bRacatus/blob/master/README.md",
-  "fileSize": "780.81KB",
+  "fileSize": "706.752KB",
   "developmentStatus": "https://www.repostatus.org/#active",
   "contIntegration": "https://travis-ci.org/EduardoArle/bRacatus",
   "citation": [
@@ -295,5 +283,11 @@
       }
     }
   ],
-  "issueTracker": "https://github.com/EduardoArle/bRacatus/issues"
+  "issueTracker": "https://github.com/EduardoArle/bRacatus/issues",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  }
 }

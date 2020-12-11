@@ -21,7 +21,7 @@ library(bRacatus)
 
 # Tutorial to install and use bRacatus
 
-This tutorial aims to guide the user from the installation to the data visualisation of bRacatus. We will walk the user through three examples. The first example uses GIFT checklist data as reference regions. Afterwards, a second example, containing data that are more complex, will be introduced to compare the functions’ performance when dealing with a bigger data volume, still using the GIFT API. Finally, the third example uses range maps as reference regions. bRacatus allows users to input their own data or to obtain these data from online repositories. In this tutorial, we will show how to use GBIF-facilitated point data and checklists provided by GIFT. We will also show an example in which range maps are input by the user. We ran all tests in a computer with 8GB of RAM, the execution times of each function may vary depending on the computer configuration, as well as on the internet connection for the functions requesting data through an API.
+This tutorial aims to guide the user from the installation to the data visualisation of bRacatus. We will walk the user through two examples. The first example uses GIFT checklist data as reference regions. The second example uses range maps as reference regions. bRacatus allows users to input their own data or to obtain these data from online repositories. In this tutorial, we will show how to use GBIF-facilitated point data and checklists provided by GIFT. We will also show an example in which range maps are input by the user. We ran all tests in a computer with 8GB of RAM, the execution times of each function may vary depending on the computer configuration, as well as on the internet connection for the functions requesting data through an API.
 
 ## Installing bRacatus 
 
@@ -65,7 +65,7 @@ Running time: ≈ 2s.
 Output: a figure with three occurrence maps, showing the regions where the species is present, native and alien.
 
 ```{r, eval = FALSE}
-signals <- signalCalculation (ref_reg_ID,occ_ID,biogeo = TRUE)
+signals <- signalCalculation (ref_reg,pts,biogeo = TRUE)
 ```
 
 Running time: ≈ 2s.
@@ -108,40 +108,8 @@ plotBiogeoStatus (biogeo)
 Running time: < 1s.
 Output: a map showing the nativeness of the  points in a gradient from most likely alien (0) to most likely native (1).
 
-## Example 2 - GIFT checklist data as reference regions, a more complex example with more records and reference regions.
 
-```{r}
-pts <- getOcc ("Senna bicapsularis")   # Running time: ≈ 7s.
-plotOcc (pts)  # Running time: < 1s.
-```
-
-```{r, warning = FALSE}
-ref_reg <- giftRegions ("Senna bicapsularis")   # Running time: ≈ 120s.
-plotRefReg (ref_reg)  # Running time: ≈ 2s.
-```
-
-```{r, eval = FALSE}
-signals_2 <- signalCalculation (ref_reg,pts,biogeo = TRUE)   # Running time: ≈ 250s.
-```
-
-```{r, echo = FALSE}
-data(signals_2)
-```
-
-```{r}
-acc <- accuracy (signals_2)   # Running time: < 1s.
-biogeo <- biogeoStatus (signals_2)   # Running time: < 1s.
-```
-
-```{r}
-plotAccuracy (acc)   # Running time: < 1s.
-```
-
-```{r}
-plotBiogeoStatus (biogeo)   # Running time: < 1s.
-```
-
-## Example 3 - User input range map as reference regions
+## Example 2 - User input range map as reference regions
 
 ```{r}
 pts <- getOcc ("Phalanger orientalis")   # Running time: ≈ 1s.

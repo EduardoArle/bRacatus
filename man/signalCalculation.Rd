@@ -9,9 +9,9 @@ signalCalculation(ref_reg, pts, biogeo = TRUE)
 \arguments{
 \item{ref_reg}{a list of shapefiles containing checklist regions as 
 "presence", "native", and "alien" categories. These can be original 
-checklists, or checklists derived from renge maps.}
+checklists, or checklists derived from range maps.}
 
-\item{pts}{data.frame containing the point records and their coordianates.}
+\item{pts}{data.frame containing the point records and their coordinates.}
 
 \item{biogeo}{logical, whether the biogeographical status indices should 
 be calculated or not. Default is true, however at least the native 

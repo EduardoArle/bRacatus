@@ -107,7 +107,7 @@ rasteriseChecklists <- function(checklists){
     }
     
     inv_raster <- lapply(layers,function(x){1-x}) 
-    #invert the values in the raster to calculate the probability of not occurring
+    #invert the values in the raster to calculate the prob of not occurring
     
     if(length(inv_raster)>1){
       checklists_raster[[i]] <- 1-prod(stack(inv_raster))  

@@ -1,6 +1,6 @@
 Package: bRacatus
 Title: Estimating the Accuracy and the Status of Point Occurrence Records
-Version: 1.0.0
+Version: 1.0.1
 Language: en-GB
 Authors@R: c(person("Eduardo", "Arlé", email = "eduardo.arle@idiv.de", role = c("aut", "cre")),
              person("Alexander","Zizka",email = "alexaner.zizka@idiv.de", role = "ctb"))
@@ -19,8 +19,7 @@ Imports: data.table,
          rgeos,
          rworldmap,
          sp,
-         stats,
-         testthat
+         stats
 License: GPL (>= 2)
 Encoding: UTF-8
 URL: https://github.com/EduardoArle/bRacatus

@@ -1,3 +1,12 @@
+bRacatus 1.0.1 (2020-12-10)
+=========================
+
+### MAJOR IMPROVEMENTS
+  * Reformulated code according to comments from CRAN staff
+  * Made the changes suggested by reviewrs
+
+
+
 bRacatus 1.0.0 (2020-08-18)
 =========================
 
