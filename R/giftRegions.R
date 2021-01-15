@@ -41,20 +41,22 @@ giftRegions <- function(species,min_size=1000,max_size=100000000000){
                                         species,"."))
     }else{
       for(i in seq_len(nrow(jdata)))
-        #some times: Error in spRbind(as(obj, "SpatialPolygons"), 
-        #as(x, "SpatialPolygons")) : non-unique polygon IDs
       {
-        a <- geojsonio::geojson_read(
+        a <- try(suppressWarnings(geojsonio::geojson_read(
           paste("http://gift.uni-goettingen.de/geojson/geojson_smaller/", 
                 #download the shapefile for each region
-                jdata$entity_ID[[i]],".geojson",sep=""), what = "sp")
-        a$native <- jdata$native[[i]]
-        a$naturalised <- jdata$naturalized[[i]]
-        b <- sp::spChFIDs(a,paste(i))
-        if(i == 1){
-          regs <- b
-        }else{
-          regs <- spRbind(regs,b)
+                jdata$entity_ID[[i]],".geojson",sep=""), what = "sp")),
+          silent = TRUE)
+        
+        if(class(a) != "try-error"){
+          a$native <- jdata$native[[i]]
+          a$naturalised <- jdata$naturalized[[i]]
+          b <- sp::spChFIDs(a,paste(i))
+          if(i == 1){
+            regs <- b
+          }else{
+            regs <- spRbind(regs,b)
+          }
         }
       }
       regs <- regs[which(regs$area>min_size),]

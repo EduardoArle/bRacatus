@@ -103,13 +103,14 @@ rasteriseChecklists <- function(checklists){
         layers[[j]] <- raster2
       }
     }else{
-      layers <- raster(vals=0,res=.5)
+      layers <- list(raster(vals=0,res=.5))
     }
     
-    inv_raster <- lapply(layers,function(x){1-x}) 
-    #invert the values in the raster to calculate the prob of not occurring
-    
-    if(length(inv_raster)>1){
+    if(length(layers)>1){
+      
+      inv_raster <- lapply(layers,function(x){1-x}) 
+      #invert the values in the raster to calculate the prob of not occurring
+      
       checklists_raster[[i]] <- 1-prod(stack(inv_raster))  
       #calculate the combined prior confiability of occurrence 
       #according to the formula: p = 1-(pn1*pn2 … pnn)
