@@ -1,5 +1,5 @@
 Package: bRacatus
-Title: A method to estimate the accuracy and biogeographical status of georeferenced biological data
+Title: A Method to Estimate the Accuracy and Biogeographical Status of Georeferenced Biological Data
 Version: 1.0.2
 Language: en-GB
 Authors@R: c(person("Eduardo", "Arlé", email = "eduardo.arle@idiv.de", role = c("aut", "cre")),
