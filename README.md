@@ -3,7 +3,7 @@
 ![Github All Releases](https://img.shields.io/github/downloads/kotlin-graphics/kotlin-unsigned/total.svg)
 ![CRAN](https://www.r-pkg.org/badges/version/bRacatus)
 
-# bRacatus v1.0.1
+# bRacatus v1.0.2
 
 An R package to estimate the probability of species geographic point occurrence records being native or invasive and correct or erroneous.
 
