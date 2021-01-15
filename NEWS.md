@@ -1,3 +1,14 @@
+bRacatus 1.0.2 (2021-01-15)
+=========================
+
+### MAJOR IMPROVEMENTS
+  * Fixed bugs reported by users
+  
+### MINOR IMPROVEMENTS
+  * Edited citations
+
+
+
 bRacatus 1.0.1 (2020-12-10)
 =========================
 
