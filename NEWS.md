@@ -1,3 +1,9 @@
+bRacatus 1.0.3 (2021-04-17)
+=========================
+
+### MAJOR IMPROVEMENTS
+  * Function gbifRegion, which caused the tests to fail, is now working.
+
 bRacatus 1.0.2 (2021-01-15)
 =========================
 
