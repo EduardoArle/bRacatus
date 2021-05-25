@@ -10,9 +10,19 @@ An R package to estimate the probability of species geographic point occurrence 
 ## Installation
 
 ```{r}
-library(devtools)
+# Install the stable CRAN version
 
-install_devtools()
+install.packages("bRacatus")
+
+# Install the development version
+
+if(!require("remotes")) {
+  
+  install.packages("remotes")
+  
+}
+
+remotes::install_github("EduardoArle/bRacatus")
 ```
 
 ## Usage

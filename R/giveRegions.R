@@ -13,6 +13,7 @@
 #' been listed as native. And "regs_alien" includes all the features 
 #' corresponding to regions where the species has been listed as alien.
 #' @examples
+#' library(rworldmap)
 #' world <- getMap()
 #' regs <- world[c("Brazil","Argentina","Uruguay","Paraguay"),]
 #' regs_native <- world[c("Brazil","Paraguay"),]
