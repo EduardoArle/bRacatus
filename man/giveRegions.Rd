@@ -25,6 +25,7 @@ corresponding to regions where the species has been listed as alien.
 Imput checklist regions
 }
 \examples{
+library(rworldmap)
 world <- getMap()
 regs <- world[c("Brazil","Argentina","Uruguay","Paraguay"),]
 regs_native <- world[c("Brazil","Paraguay"),]
