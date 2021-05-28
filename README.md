@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/EduardoArle/bRacatus.svg?branch=master)](https://travis-ci.org/EduardoArle/bRacatus)
 ![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)
 ![CRAN](https://www.r-pkg.org/badges/version/bRacatus)
-![GitHub: Downloads] (https://img.shields.io/github/downloads/EduardoArle/bRacatus/total?style=plastic)
+![GitHub: Downloads](https://img.shields.io/github/downloads/EduardoArle/bRacatus/total?style=plastic)
 
 # bRacatus v1.0.2
 
