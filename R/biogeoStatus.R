@@ -11,6 +11,7 @@
 #'
 #' @export
 biogeoStatus <- function(signals) {
+  signals <- as.data.frame(signals)
   model <- bRacatus::Model_biogeo
   biogeo <- predict(model, signals, type = "response")
   tab <- signals[, -((ncol(signals) - 3):ncol(signals))]

@@ -22,7 +22,7 @@ been listed as native. And "regs_alien" includes all the features
 corresponding to regions where the species has been listed as alien.
 }
 \description{
-Imput checklist regions
+Input checklist regions
 }
 \examples{
 library(rworldmap)

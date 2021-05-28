@@ -1,6 +1,6 @@
 #' giveRegions
 #'
-#' Imput checklist regions
+#' Input checklist regions
 #'
 #' @importFrom rworldmap getMap
 #' @param regs shapefile containing all regions of occurrence.

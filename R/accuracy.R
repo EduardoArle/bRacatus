@@ -11,9 +11,11 @@
 #'
 #' @export
 accuracy <- function(signals) {
+  signals <- as.data.frame(signals)
   model <- bRacatus::Model_accuracy
   acc <- predict(model, signals, type = "response")
-  tab <- signals[,-grep("signal",names(signals))]
+  drop <- c("ID_points",names(signals)[grep("signal",names(signals))])
+  tab <- signals[, !(names(signals) %in% drop)]
   tab <- cbind(tab, accuracy = acc)
   return(tab)
 }

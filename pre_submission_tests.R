@@ -1,9 +1,10 @@
 library(goodpractice)
 
-gp("C:/Users/ca13kute/Documents/bRacatus/Package/bRacatus") #change 
+gp("C:/Users/ca13kute/Documents/bRacatus/bRacatus") #change 
+
 
 #R CMD check
-devtools::check_built(path = "C:/Users/ca13kute/Documents/bRacatus/Package/bRacatus", 
+devtools::check_built(path = "C:/Users/ca13kute/Documents/bRacatus/bRacatus", 
                       manual = T, cran = T)
 
 devtools::spell_check(use_wordlist = T)

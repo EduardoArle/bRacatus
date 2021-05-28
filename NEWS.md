@@ -3,7 +3,7 @@ bRacatus 1.0.4 (2021-05-28)
 
 ### MAJOR IMPROVEMENTS
   * Changed the "closeAllConnections()" in signalCalculation function to closing only the connections that were open, according to instructions received from CRAN staff. 
-  * Fixed bug repported by user in accuracy function.
+  * Fixed bug reported by user in accuracy function.
 
 
 
