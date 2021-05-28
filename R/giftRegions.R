@@ -55,9 +55,12 @@ giftRegions <- function(species,min_size=1000,max_size=100000000000){
           if(i == 1){
             regs <- b
           }else{
-            regs <- spRbind(regs,b)
+            if(ncol(regs) == ncol(b)){
+              regs <- spRbind(regs,b)
+            }
           }
         }
+        print(i)
       }
       regs <- regs[which(regs$area>min_size),]
       regs <- regs[which(regs$area<max_size),]
