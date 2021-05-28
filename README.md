@@ -3,7 +3,7 @@
 ![CRAN](https://www.r-pkg.org/badges/version/bRacatus)
 ![CRAN - Downloads](http://cranlogs.r-pkg.org/badges/grand-total/bRacatus$color=orange)
 ![CRAN - Downloads Month](http://cranlogs.r-pkg.org/badges/Rcpp)
-|[CRAN](http://cranlogs.r-pkg.org/badges/Rcpp?color=brightgreen)
+![CRAN](http://cranlogs.r-pkg.org/badges/Rcpp?color=brightgreen)
 ![GitHub: Closed Issues](https://img.shields.io/github/issues-closed-raw/EduardoArle/bRacatus)
 
 # bRacatus v1.0.4
