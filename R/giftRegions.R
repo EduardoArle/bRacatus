@@ -60,7 +60,6 @@ giftRegions <- function(species,min_size=1000,max_size=100000000000){
             }
           }
         }
-        print(i)
       }
       regs <- regs[which(regs$area>min_size),]
       regs <- regs[which(regs$area<max_size),]
