@@ -1,9 +1,8 @@
 [![Build Status](https://travis-ci.org/EduardoArle/bRacatus.svg?branch=master)](https://travis-ci.org/EduardoArle/bRacatus)
 ![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)
 ![CRAN](https://www.r-pkg.org/badges/version/bRacatus)
-![CRAN - Downloads](http://cranlogs.r-pkg.org/badges/grand-total/bRacatus$color=orange)
-![CRAN - Downloads Month](http://cranlogs.r-pkg.org/badges/bRacatus?color=brightgreen)
-![CRAN](http://cranlogs.r-pkg.org/badges/Rcpp?color=brightgreen)
+![CRAN - Downloads](http://cranlogs.r-pkg.org/badges/grand-total/bRacatus?color=ff69b4)
+![CRAN - Downloads Month](http://cranlogs.r-pkg.org/badges/bRacatus)
 ![GitHub: Closed Issues](https://img.shields.io/github/issues-closed-raw/EduardoArle/bRacatus)
 
 # bRacatus v1.0.4
