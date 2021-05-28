@@ -5,11 +5,15 @@ bRacatus 1.0.4 (2021-05-28)
   * Changed the "closeAllConnections()" in signalCalculation function to closing only the connections that were open, according to instructions received from CRAN staff. 
   * Fixed bug repported by user in accuracy function.
 
+
+
 bRacatus 1.0.3 (2021-04-17)
 =========================
 
 ### MAJOR IMPROVEMENTS
   * Function gbifRegion, which caused the tests to fail, is now working.
+
+
 
 bRacatus 1.0.2 (2021-01-15)
 =========================
