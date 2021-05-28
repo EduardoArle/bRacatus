@@ -2,7 +2,7 @@
 ![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)
 ![CRAN](https://www.r-pkg.org/badges/version/bRacatus)
 ![CRAN - Downloads](http://cranlogs.r-pkg.org/badges/grand-total/bRacatus$color=orange)
-![CRAN - Downloads Month](http://cranlogs.r-pkg.org/badges/Rcpp)
+![CRAN - Downloads Month](http://cranlogs.r-pkg.org/badges/bRacatus)
 ![CRAN](http://cranlogs.r-pkg.org/badges/Rcpp?color=brightgreen)
 ![GitHub: Closed Issues](https://img.shields.io/github/issues-closed-raw/EduardoArle/bRacatus)
 
