@@ -17,7 +17,7 @@
 #' @export
 signalCalculation <- function(ref_reg, pts, biogeo = TRUE) {
   
-  ref_reg_rast <- rasteriseChecklists(ref_reg)
+  ref_reg_rast <- rasteriseChecklists (ref_reg)
   ref_reg_ID <- valueID (ref_reg_rast)
   occ_ID <- occID (pts)
   
@@ -36,18 +36,17 @@ signalCalculation <- function(ref_reg, pts, biogeo = TRUE) {
   unique_IDs <- unique(occ_ID$ID_points)
   for (i in seq_along(unique_IDs)) 
     {
-    dist <- try(suppressWarnings(readRDS(gzcon(url(
-      paste0("http://gift.uni-goettingen.de/bracatus/distances/",
-             unique_IDs[i]))))),
-                silent =TRUE)
+    con <- gzcon(url(paste0("http://gift.uni-goettingen.de/bracatus/distances/",
+                  unique_IDs[i])))
+    dist <- try(suppressWarnings(readRDS(con)),silent =TRUE)
     
     if(class(dist) == "try-error"){
       
       stop("Distance matrices not accessible due to connection issues.")
       
     }else{
-      closeAllConnections()
-      
+      close(con)
+
       prox <- 1 - (dist[sps_range_ID]/200)
       #normalise the distances and invert the values to calculate a proximity 
       #index between 0 and 1, getting only the values for the cells that 
