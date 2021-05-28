@@ -6,7 +6,6 @@
 ![CRAN - Downloads Week](http://cranlogs.r-pkg.org/badges/last-week/bRacatus?color=orange)
 ![GitHub: Closed Issues](https://img.shields.io/github/issues-closed-raw/EduardoArle/bRacatus)
 [![DOI:10.1111/2041-210X.13629](http://img.shields.io/badge/DOI-10.1111/2041-210X.13629-B31B1B.svg)](https://doi.org/10.1111/2041-210X.13629)
-[![DOI:10.1101/2021.01.08.425840](http://img.shields.io/badge/DOI-10.1101/2021.01.08.425840-B31B1B.svg)](https://doi.org/10.1101/2021.01.08.425840)
 
 
 # bRacatus v1.0.4
