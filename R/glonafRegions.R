@@ -4,6 +4,7 @@
 #'
 #' @importFrom rgdal readOGR
 #' @importFrom raster area
+#' @importFrom geojsonio geojson_read
 #' @importFrom maptools spRbind
 #' @importFrom sp spChFIDs
 #' @param species character, species binomial name
@@ -12,30 +13,47 @@
 #' will automatically download native regions listed by GIFT for the species. If
 #' "range map" or "checklist" is chosen, the user must provide a shapefile with 
 #' either the species range map, or the features representing regions where it 
-#' has been listed as native. Default is "gift" 
-#' @param wd_glonaf character, path to a folder containing the glonaf shapefile 
-#' and occurrence table.
+#' has been listed as native. Default is "gift".
+#' @param nat_ref_reg shapefile containing either the species native range map
+#' or checklist. The user must inform which reference region data type is being
+#' provided in the parameter "native".
 #' @return This function returns a list containing three shapefiles derived by 
 #' information supplied by GloNAF for the alien reference regions, and the
 #' chosen source for the native reference regions. "regs" includes all the 
 #' features corresponding to regions where the species has been listed as 
 #' present. "regs_native" includes all the features corresponding to regions 
-#' where the species has 
-#' been listed as native. And "regs_alien" includes all the features 
-#' corresponding to regions where the species has been listed as alien.
+#' where the species has been listed as native. And "regs_alien" includes all 
+#' the features corresponding to regions where the species has been listed as 
+#' alien.
 #' @examples
-#' gift_reference_regions <- giftRegions("Boreava aptera")
+#' glonaf_reference_regions <- glonafRegions("Boreava aptera")
 #' @export
-glonafRegions <- function(species,native = "gift",wd_glonaf){
+glonafRegions <- function(species,native = "gift",nat_ref_reg = NULL){
   
   if(native == "gift"){
     regs_nat <- giftRegions(species)
     regs_nat2 <- try(regs_nat$Native,silent=T)
-  }else{
-    #create options for checklists or range maps input by the user
   }
   
-  #change the attribut table to show only area
+  if(native == "range map"){
+    if(is.null(nat_ref_reg)){
+      stop("Provide shapefile containing the species's native range.")
+    }else{
+      raster_2degrees <- raster(vals = NA, res = 2)
+      raster_cut <- crop(raster_2degrees, extent(nat_ref_reg) + c(-2, 2, -2, 2))
+      
+      range_native2 <- rasterize(nat_ref_reg, raster_cut, getCover = TRUE)  
+      #rasterise the range map #count also very small features
+      range_native3 <- rasterToPolygons(range_native2)
+      range_native4 <- range_native3[which(range_native3$layer != 0), ]
+      range_native4$data <- 1
+      range_native4 <- range_native4[which(range_native4$layer >= 0.05), ]
+      range_native4$area <- raster::area(range_native4)/1e+06
+      regs_nat2 <- range_native4
+    }
+  }
+  
+  #change the attribute table to show only area
   if(class(regs_nat2) == "try-error" | nrow(regs_nat2) == 0){
     nat <- NA
   }else{
@@ -44,27 +62,59 @@ glonafRegions <- function(species,native = "gift",wd_glonaf){
     nat <- sp::spChFIDs(regs_nat2,paste(c(1:nrow(regs_nat2))))
   }
   
-  #load glonaf information
-  setwd(wd_glonaf)
+  #get glonaf information
   
-  tab_glo <- read.csv("GloNAF_modified_table.csv")
-  sps_tab <- tab_glo[which(tab_glo$standardized_name == species),]
+  genus <- gsub("(^.*) (.*$)","\\1",species)  #get genus
+  epithet <- gsub("(^.*) (.*$)","\\2",species)  #get epithet
   
-  glonaf_shp <- readOGR("GloNAF_modified", dsn = wd_glonaf)
+  con <- gzcon(url(paste0(
+    "http://gift.uni-goettingen.de/bracatus/glonaf/species/",
+    genus,"%20",epithet)))
+ 
+  glonaf_table <- try(suppressWarnings(readRDS(con)),silent =TRUE)
   
-  regs_alien <- glonaf_shp[which(glonaf_shp$OBJIDsic %in%
-                                sps_tab$OBJIDsic),]
-  
-  if(nrow(regs_alien) > 0){
-    #change the attribut table to show only area
-    regs_alien@data <- data.frame(area = area(regs_alien)/1000000)
+  close(con)
+ 
+  if(class(glonaf_table) == "try-error"){
     
-    alien <- sp::spChFIDs(regs_alien,paste(c(nrow(regs_nat2)+1 : nrow(regs_alien))))
+    stop("GloNAF database not accessible due to connection issues.")
     
-    regs <- spRbind(nat,alien)
-    regs_native <- nat
-    regs_alien <- alien
-    regs_list <- list(regs,regs_native,regs_alien)
+  }else{
+    if(nrow(glonaf_table)==0){warning(paste0(
+      "GloNAF does not have checklists for ",
+      species,"."))
+    }else{
+      for(i in seq_len(nrow(glonaf_table)))
+      {
+        #download the shapefile for each region
+        a <- try(suppressWarnings(geojsonio::geojson_read(
+          paste("http://gift.uni-goettingen.de/bracatus/glonaf/geojson/", 
+                glonaf_table$OBJIDsic[i],".geojson",sep=""), what = "sp")),
+          silent = TRUE)
+        
+        if(class(a) != "try-error"){
+          b <- sp::spChFIDs(a,paste(i))
+          if(i == 1){
+            alien <- b
+          }else{
+            if(ncol(alien) == ncol(b)){
+              alien <- spRbind(alien,b)
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  if(nrow(alien) > 0){
+    #change the attribute table of the alien regions to show only area
+    alien@data <- data.frame(area = area(alien)/1000000)
+    
+    #fix the IDs to alow to later join with the native regions and make the 
+    #Presence
+    alien <- sp::spChFIDs(alien,paste(c(nrow(nat)+1 : nrow(alien))))
+    presence <- spRbind(nat,alien)
+    regs_list <- list(presence,nat,alien)
     names(regs_list) <- c("Presence","Native","Alien")
     return(regs_list)
   }else{
