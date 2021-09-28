@@ -1,7 +1,7 @@
-## bRacatus version 1.0.4
-The code calling "closeAllConnections" has been substituted to ensure the package code only closes connections it also opened.
+## bRacatus version 1.0.5
+Function glonafRegions included in the package to automatically retrieve data from GloNAF database.
 
-A bug repported by an user in the function accuracy was solves as well.
+Fix in the function countryChecklist to allow plotting of the results by function plotRefReg.
 
 ## R CMD check results
 There is a note informing that 2469 UTF-8 strings were found. However the package is written with UTF-8 encoding.

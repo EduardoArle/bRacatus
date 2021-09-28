@@ -1,3 +1,13 @@
+bRacatus 1.0.5 (2021-09-28)
+=========================
+
+### MAJOR IMPROVEMENTS
+  * function glonafRegions included in the package to automatically retrieve data from GloNAF database.
+  
+### MINOR IMPROVEMENTS
+  * fix in the function countryChecklist to allow plotting of the results by function plotRefReg.
+
+
 bRacatus 1.0.4 (2021-05-28)
 =========================
 
@@ -31,7 +41,7 @@ bRacatus 1.0.1 (2020-12-10)
 
 ### MAJOR IMPROVEMENTS
   * Reformulated code according to comments from CRAN staff
-  * Made the changes suggested by reviewrs
+  * Made the changes suggested by reviewers
 
 
 
