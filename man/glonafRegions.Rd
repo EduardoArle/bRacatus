@@ -4,7 +4,7 @@
 \alias{glonafRegions}
 \title{glonafRegions}
 \usage{
-glonafRegions(species, native = "gift", wd_glonaf)
+glonafRegions(species, native = "gift", nat_ref_reg = NULL)
 }
 \arguments{
 \item{species}{character, species binomial name}
@@ -14,10 +14,11 @@ are "gift", "range map", or "checklist". If "gift" is chosen, the function
 will automatically download native regions listed by GIFT for the species. If
 "range map" or "checklist" is chosen, the user must provide a shapefile with 
 either the species range map, or the features representing regions where it 
-has been listed as native. Default is "gift"}
+has been listed as native. Default is "gift".}
 
-\item{wd_glonaf}{character, path to a folder containing the glonaf shapefile 
-and occurrence table.}
+\item{nat_ref_reg}{shapefile containing either the species native range map
+or checklist. The user must inform which reference region data type is being
+provided in the parameter "native".}
 }
 \value{
 This function returns a list containing three shapefiles derived by 
@@ -25,13 +26,13 @@ information supplied by GloNAF for the alien reference regions, and the
 chosen source for the native reference regions. "regs" includes all the 
 features corresponding to regions where the species has been listed as 
 present. "regs_native" includes all the features corresponding to regions 
-where the species has 
-been listed as native. And "regs_alien" includes all the features 
-corresponding to regions where the species has been listed as alien.
+where the species has been listed as native. And "regs_alien" includes all 
+the features corresponding to regions where the species has been listed as 
+alien.
 }
 \description{
 Gets regions listed by GloNAF for plant species
 }
 \examples{
-gift_reference_regions <- giftRegions("Boreava aptera")
+glonaf_reference_regions <- glonafRegions("Boreava aptera")
 }
