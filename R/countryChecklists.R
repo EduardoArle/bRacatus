@@ -2,6 +2,7 @@
 #'
 #' Prepares user provided reference regions on a country level
 #'
+#' @importFrom raster area
 #' @importFrom rworldmap getMap
 #' @param  countries vector with one or more country names
 #' @param  biogeo_status vector informing the status of each country: alien, 
@@ -33,6 +34,7 @@ countryChecklist <- function(countries, biogeo_status) {
     features[i] <- a
   }
   shp <- world[features, ]
+  shp$area <- area(shp)
   presence <- shp
   native <- world[features[which(biogeo_status == "native")], ]
   alien <- world[features[which(biogeo_status == "alien")], ]
