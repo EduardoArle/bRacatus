@@ -59,7 +59,7 @@ glonafRegions <- function(species,native = "gift",nat_ref_reg = NULL){
   }else{
     regs_nat2@data <- data.frame(area = area(regs_nat2)/1000000)
     
-    nat <- sp::spChFIDs(regs_nat2,paste(c(1:nrow(regs_nat2))))
+    nat <- sp::spChFIDs(regs_nat2,paste(seq_len(nrow(regs_nat2))))
   }
   
   #get glonaf information
