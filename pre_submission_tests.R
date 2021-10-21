@@ -15,7 +15,7 @@ devtools::check_rhub()
 
 devtools::check_win_devel()
 
-codemetar::write_codemeta()
+codemeta::write_codemeta()
 
 devtools::release()
 

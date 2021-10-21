@@ -112,7 +112,9 @@ glonafRegions <- function(species,native = "gift",nat_ref_reg = NULL){
     
     #fix the IDs to alow to later join with the native regions and make the 
     #Presence
-    alien <- sp::spChFIDs(alien,paste(c(nrow(nat)+1 : nrow(alien))))
+    from <- nrow(nat)+1
+    to <- nrow(nat)+nrow(alien)
+    alien <- sp::spChFIDs(alien,paste(c(from:to)))
     presence <- spRbind(nat,alien)
     regs_list <- list(presence,nat,alien)
     names(regs_list) <- c("Presence","Native","Alien")

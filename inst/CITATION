@@ -1,7 +1,7 @@
 note <- sprintf("R package version %s", meta$Version)
 
 bibentry(bibtype = "article",
-         title = "bRacatus: estimating the accuracy and biogeographical status of georeferenced biological data",
+         title = "bRacatus: A method to estimate the accuracy and biogeographical status of georeferenced biological data",
          author = c(person("Eduardo", "Arlé"),
                     person("Alexander", "Zizka"),
                     person("Petr", "Keil"),
@@ -11,5 +11,10 @@ bibentry(bibtype = "article",
                     person("Patrick", "Weigelt"),
                     person("Marina", "Jiménez-Muñoz"),
                     person("Carsten", "Meyer")),
-                    journal = "submitted",
-                    year = 2020)
+         journal = "Methods in Ecology and Evolution",
+         number = 12,
+         pages = 1609-1619,
+         year = 2021,
+         note = note,
+         doi = "10.1111/2041-210X.13629",
+         url = "https://github.com/EduardoArle/bRacatus")
