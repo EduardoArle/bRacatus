@@ -8,7 +8,7 @@
 [![DOI:10.1111/2041-210X.13629](https://zenodo.org/badge/DOI/10.1111/2041-210X.13629.svg)](https://doi.org/10.1111/2041-210X.13629)
 
 
-# bRacatus v1.0.4
+# bRacatus v1.0.5
 
 An R package to estimate the probability of species geographic point occurrence records being native or invasive and correct or erroneous.
 
