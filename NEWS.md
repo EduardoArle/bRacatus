@@ -1,3 +1,10 @@
+bRacatus 1.0.6 (2021-11-09)
+=========================
+  
+### MINOR IMPROVEMENTS
+  * Changed the error message in the functions that use internet resources to an informative message, according to requirements made by CRAN. 
+
+
 bRacatus 1.0.5 (2021-10-21)
 =========================
 

@@ -1,7 +1,2 @@
-## bRacatus version 1.0.5
-Function glonafRegions included in the package to automatically retrieve data from GloNAF database.
-
-Fix in the function countryChecklist to allow plotting of the results by function plotRefReg.
-
-## R CMD check results
-There is a note informing that 2469 UTF-8 strings were found. However the package is written with UTF-8 encoding.
+## bRacatus version 1.0.6
+Functions glonafRegions and giftRegions now do not generate errors in case internet resources are not available, providing an informative message instead.
