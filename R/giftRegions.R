@@ -34,7 +34,8 @@ giftRegions <- function(species,min_size=1000,max_size=100000000000){
   
   if(class(jdata) == "try-error"){
     
-    stop("GIFT database not accessible due to connection issues.")
+    stop("GIFT database currently not accessible due to issues with the server.
+         Please try again later.")
     
   }else{
     if(length(jdata)==0){warning(paste0("GIFT does not have checklists for ",
