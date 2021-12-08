@@ -10,7 +10,7 @@
 #' limit of 200,000 occurrences imposed by occ_search function. It returns a 
 #' data table.
 #' @examples
-#' sps_occurrence <- getOcc("Hemitriccus mirandae")
+#' sps_occurrence <- getOcc("Babiana tubulosa")
 #' @export
 getOcc <- function(species) {
   gbif_rec <- try(suppressWarnings(occ_search(scientificName = species,

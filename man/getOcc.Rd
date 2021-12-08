@@ -20,5 +20,5 @@ Downloads GBIF records iterating when necessary to overcome the limitation
 of 200,000 records
 }
 \examples{
-sps_occurrence <- getOcc("Hemitriccus mirandae")
+sps_occurrence <- getOcc("Babiana tubulosa")
 }
