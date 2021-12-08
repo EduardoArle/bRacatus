@@ -77,7 +77,7 @@ glonafRegions <- function(species,native = "gift",nat_ref_reg = NULL){
   
   if(class(glonaf_table) == "try-error"){
     
-  message("GloNAF database currently not accessible due to issues with the server.
+  message("GloNAF database currently not accessible due to server issues.
         Please try again later.")
     return(NULL)
     

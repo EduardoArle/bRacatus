@@ -34,7 +34,7 @@ giftRegions <- function(species,min_size=1000,max_size=100000000000){
   
   if(class(jdata) == "try-error"){
     
-    message("GIFT database currently not accessible due to issues with the server.
+    message("GIFT database currently not accessible due to server issues.
          Please try again later.")
     return(NULL)
     

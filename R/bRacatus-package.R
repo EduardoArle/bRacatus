@@ -102,3 +102,29 @@ NULL
 #' data("signals_3")
 #' 
 NULL
+
+#'pts example 1
+#'
+#'  A \code{DataFrame} pts example 1
+#'
+#' @name pts
+#' @docType data
+#' @keywords examplary object
+#' @examples
+#' 
+#' data("pts")
+#' 
+NULL
+
+#'pts example 2
+#'
+#'  A \code{DataFrame} pts example 2
+#'
+#' @name pts2
+#' @docType data
+#' @keywords examplary object
+#' @examples
+#' 
+#' data("pts2")
+#' 
+NULL

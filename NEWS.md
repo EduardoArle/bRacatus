@@ -1,3 +1,10 @@
+bRacatus 1.0.7 (2021-12-07)
+=========================
+  
+### MINOR IMPROVEMENTS
+  * Fixed the problem in that was preventing the vignette from being built and causing some tests to fail. 
+
+
 bRacatus 1.0.6 (2021-11-09)
 =========================
   

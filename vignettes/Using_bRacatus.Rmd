@@ -34,13 +34,18 @@ library (bRacatus)
 
 1 - Obtaining, preparing and visualising the input data
 
-```{r}
+```{r, eval = FALSE}
 pts <- getOcc ("Babiana tubulosa")
-head(pts)[,c(1:4)]
+head (pts)[,c(1:4)]
 ```
 
 Running time: ≈ 1s.
 Output: a data.frame containing georeferenced records from GBIF.
+
+```{r, echo = FALSE}
+data (pts)
+head (pts)[,c(1:4)]
+```
 
 ```{r}
 plotOcc (pts)
@@ -111,17 +116,21 @@ Output: a map showing the nativeness of the  points in a gradient from most like
 
 ## Example 2 - User input range map as reference regions
 
-```{r}
-pts <- getOcc ("Phalanger orientalis")   # Running time: ≈ 1s.
+```{r,  eval = FALSE}
+pts2 <- getOcc ("Phalanger orientalis")   # Running time: ≈ 1s.
+```
+
+```{r, echo = FALSE}
+data (pts2)
 ```
 
 Simulate points for visualisation purposes
 
 ```{r}
-pts2 <- data.frame(species=pts$species,
-                       decimalLongitude=pts$decimalLongitude,
-                       decimalLatitude=pts$decimalLatitude,
-                       origin="GBIF")       # Running time: < 1s.
+pts2 <- data.frame(species=pts2$species,
+                     decimalLongitude=pts2$decimalLongitude,
+                     decimalLatitude=pts2$decimalLatitude,
+                     origin="GBIF")       # Running time: < 1s.
 
 extra_points <- data.frame(species="Phalanger orientalis",
                            decimalLongitude=c(125.257,112.765,110.632,112.192,121.130,
