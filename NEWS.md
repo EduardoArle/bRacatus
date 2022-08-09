@@ -1,3 +1,10 @@
+bRacatus 1.0.8 (2022-08-09)
+=========================
+  
+### MINOR IMPROVEMENTS
+  * Fixed bug in functions rangeMap and biogeoStatus, that were producing errors when no alien range was provided. 
+  
+
 bRacatus 1.0.7 (2021-12-07)
 =========================
   
@@ -30,13 +37,11 @@ bRacatus 1.0.4 (2021-05-28)
   * Fixed bug reported by user in accuracy function.
 
 
-
 bRacatus 1.0.3 (2021-04-17)
 =========================
 
 ### MAJOR IMPROVEMENTS
-  * Function gbifRegion, which caused the tests to fail, is now working.
-
+  * Function giftRegion, which caused the tests to fail, is now working.
 
 
 bRacatus 1.0.2 (2021-01-15)
@@ -49,14 +54,12 @@ bRacatus 1.0.2 (2021-01-15)
   * Edited citations
 
 
-
 bRacatus 1.0.1 (2020-12-10)
 =========================
 
 ### MAJOR IMPROVEMENTS
   * Reformulated code according to comments from CRAN staff
   * Made the changes suggested by reviewers
-
 
 
 bRacatus 1.0.0 (2020-08-18)
@@ -68,7 +71,6 @@ bRacatus 1.0.0 (2020-08-18)
   * Added NEWS.md
   * Added Travis integration
   * Adapted code to good practice
-  
   
 ### MINOR IMPROVEMENTS
   * Added citation

@@ -7,7 +7,7 @@
   "codeRepository": "https://github.com/EduardoArle/bRacatus",
   "issueTracker": "https://github.com/EduardoArle/bRacatus/issues",
   "license": "https://spdx.org/licenses/GPL-2.0",
-  "version": "1.0.5",
+  "version": "1.0.8",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -249,11 +249,11 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "615.955KB",
+  "fileSize": "664.145KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
-      "datePublished": "2020",
+      "datePublished": "2021",
       "author": [
         {
           "@type": "Person",
@@ -301,13 +301,19 @@
           "familyName": "Meyer"
         }
       ],
-      "name": "bRacatus: estimating the accuracy and biogeographical status of georeferenced biological data",
+      "name": "bRacatus: A method to estimate the accuracy and biogeographical status of georeferenced biological data",
+      "identifier": "10.1111/2041-210X.13629",
+      "url": "https://github.com/EduardoArle/bRacatus",
+      "pagination": "-10",
+      "@id": "https://doi.org/10.1111/2041-210X.13629",
+      "sameAs": "https://doi.org/10.1111/2041-210X.13629",
       "isPartOf": {
         "@type": "PublicationIssue",
-        "datePublished": "2020",
+        "issueNumber": "12",
+        "datePublished": "2021",
         "isPartOf": {
           "@type": ["PublicationVolume", "Periodical"],
-          "name": "submitted"
+          "name": "Methods in Ecology and Evolution"
         }
       }
     }
