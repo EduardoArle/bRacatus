@@ -32,7 +32,7 @@ giftRegions <- function(species,min_size=1000,max_size=100000000000){
                      simplifyVector = TRUE)),
               silent = TRUE)
   
-  if(class(jdata) == "try-error"){
+  if(inherits(jdata, "try-error")){
     
     message("GIFT database currently not accessible due to server issues.
          Please try again later.")
@@ -49,8 +49,8 @@ giftRegions <- function(species,min_size=1000,max_size=100000000000){
                 #download the shapefile for each region
                 jdata$entity_ID[[i]],".geojson",sep=""), what = "sp")),
           silent = TRUE)
-        
-        if(class(a) != "try-error"){
+
+        if(!inherits(a, "try-error")){
           a$native <- jdata$native[[i]]
           a$naturalised <- jdata$naturalized[[i]]
           b <- sp::spChFIDs(a,paste(i))

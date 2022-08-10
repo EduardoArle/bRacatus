@@ -54,7 +54,7 @@ glonafRegions <- function(species,native = "gift",nat_ref_reg = NULL){
   }
   
   #change the attribute table to show only area
-  if(class(regs_nat2) == "try-error" | nrow(regs_nat2) == 0){
+  if(inherits(regs_nat2, "try-error") | nrow(regs_nat2) == 0){
     nat <- NA
   }else{
     regs_nat2@data <- data.frame(area = area(regs_nat2)/1000000)
@@ -75,7 +75,7 @@ glonafRegions <- function(species,native = "gift",nat_ref_reg = NULL){
  
   close(con)
   
-  if(class(glonaf_table) == "try-error"){
+  if(inherits(glonaf_table, "try-error")){
     
   message("GloNAF database currently not accessible due to server issues.
         Please try again later.")
@@ -94,7 +94,7 @@ glonafRegions <- function(species,native = "gift",nat_ref_reg = NULL){
                 glonaf_table$OBJIDsic[i],".geojson",sep=""), what = "sp")),
           silent = TRUE)
         
-        if(class(a) != "try-error"){
+        if(!inherits(a, "try-error")){
           b <- sp::spChFIDs(a,paste(i))
           if(i == 1){
             alien <- b

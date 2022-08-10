@@ -40,7 +40,7 @@ signalCalculation <- function(ref_reg, pts, biogeo = TRUE) {
                   unique_IDs[i])))
     dist <- try(suppressWarnings(readRDS(con)),silent =TRUE)
     
-    if(class(dist) == "try-error"){
+    if(inherits(dist, "try-error")){
       
       stop("Distance matrices not accessible due to connection issues.")
       

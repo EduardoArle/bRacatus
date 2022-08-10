@@ -18,7 +18,7 @@ getOcc <- function(species) {
                                               hasCoordinate = TRUE)),
                   silent = TRUE)
   
-  if(class(gbif_rec) == "try-error"){
+  if(inherits(gbif_rec, "try-error")){
    
     stop("GBIF database not accessible due to connection issues.")
     

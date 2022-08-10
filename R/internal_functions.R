@@ -6,7 +6,7 @@ getGbifDecade <- function(species){
   pts_1001_1900 <- occ_search(scientificName=species,  
                               #download gbif records per period
                               limit=200000,year='1001,1900')
-  if(class(pts_1001_1900[[3]])!="NULL"){
+  if(!inherits(pts_1001_1900[[3]], "NULL")){
     if(nrow(pts_1001_1900[[3]])==200000){     
       #flag possible periods with more than 200000 records
 warning("There are more than 200,000 records available between 1001 and 1009.
