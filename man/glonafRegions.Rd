@@ -34,5 +34,5 @@ alien.
 Gets regions listed by GloNAF for plant species
 }
 \examples{
-glonaf_reference_regions <- glonafRegions("Boreava aptera")
+glonaf_reference_regions <- glonafRegions("Ambrosia grayi")
 }

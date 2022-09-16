@@ -26,7 +26,7 @@
 #' the features corresponding to regions where the species has been listed as 
 #' alien.
 #' @examples
-#' glonaf_reference_regions <- glonafRegions("Boreava aptera")
+#' glonaf_reference_regions <- glonafRegions("Ambrosia grayi")
 #' @export
 glonafRegions <- function(species,native = "gift",nat_ref_reg = NULL){
   

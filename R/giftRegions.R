@@ -18,7 +18,7 @@
 #' been listed as native. And "regs_alien" includes all the features 
 #' corresponding to regions where the species has been listed as alien.
 #' @examples
-#' gift_reference_regions <- giftRegions("Boreava aptera")
+#' gift_reference_regions <- giftRegions("Babiana tubulosa")
 #' @export
 giftRegions <- function(species,min_size=1000,max_size=100000000000){
   

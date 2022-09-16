@@ -27,5 +27,5 @@ corresponding to regions where the species has been listed as alien.
 Gets regions listed by GIFT for plant species
 }
 \examples{
-gift_reference_regions <- giftRegions("Boreava aptera")
+gift_reference_regions <- giftRegions("Babiana tubulosa")
 }
