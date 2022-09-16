@@ -1,3 +1,10 @@
+bRacatus 1.0.9 (2022-09-16)
+=========================
+  
+### MINOR IMPROVEMENTS
+  * Fixed bug in function glonafRegions, that were producing errors due to a change in the GIFT database. 
+  
+
 bRacatus 1.0.8 (2022-08-09)
 =========================
   
