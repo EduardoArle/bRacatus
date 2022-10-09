@@ -2,7 +2,7 @@
 #'
 #' Gets regions listed by GIFT for plant species
 #'
-#' @importFrom jsonlite read_json
+#' @importFrom jsonlite read_json 
 #' @importFrom geojsonio geojson_read
 #' @importFrom maptools spRbind
 #' @importFrom sp spChFIDs
