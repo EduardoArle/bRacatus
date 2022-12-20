@@ -1,3 +1,10 @@
+bRacatus 1.0.10 (2022-12-20)
+=========================
+  
+### MINOR IMPROVEMENTS
+  * Changed authors e-mail, and cleaned code to avoid lines with more than 80 characters. 
+  
+
 bRacatus 1.0.9 (2022-09-16)
 =========================
   
