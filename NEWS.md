@@ -1,6 +1,13 @@
-bRacatus 1.0.10 (2022-12-20)
+bRacatus 1.0.11 (2022-12-21)
 =========================
   
+### MINOR IMPROVEMENTS
+  * Functions getOcc and signalCalculation now fail gracefully if the internet connection to the database is unavailable. 
+
+
+bRacatus 1.0.10 (2022-12-20)
+=========================
+
 ### MINOR IMPROVEMENTS
   * Changed authors e-mail, and cleaned code to avoid lines with more than 80 characters. 
   

@@ -20,7 +20,9 @@ getOcc <- function(species) {
   
   if(inherits(gbif_rec, "try-error")){
    
-    stop("GBIF database not accessible due to connection issues.")
+    message("GBIF database not accessible due to connection issues.
+            Please try again later.")
+      return(NULL)
     
   }else{
     

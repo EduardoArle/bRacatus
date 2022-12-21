@@ -42,7 +42,8 @@ signalCalculation <- function(ref_reg, pts, biogeo = TRUE) {
     
     if(inherits(dist, "try-error")){
       
-      stop("Distance matrices not accessible due to connection issues.")
+      message("Distance matrices not accessible due to connection issues.")
+      return(NULL)
       
     }else{
       close(con)

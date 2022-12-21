@@ -7,7 +7,7 @@
   "codeRepository": "https://github.com/EduardoArle/bRacatus",
   "issueTracker": "https://github.com/EduardoArle/bRacatus/issues",
   "license": "https://spdx.org/licenses/GPL-2.0",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -243,7 +243,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "652.455KB",
+  "fileSize": "652.739KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -298,7 +298,7 @@
       "name": "bRacatus: A method to estimate the accuracy and biogeographical status of georeferenced biological data",
       "identifier": "10.1111/2041-210X.13629",
       "url": "https://github.com/EduardoArle/bRacatus",
-      "description": "R package version 1.0.10",
+      "description": "R package version 1.0.11",
       "pagination": "-10",
       "@id": "https://doi.org/10.1111/2041-210X.13629",
       "sameAs": "https://doi.org/10.1111/2041-210X.13629",
