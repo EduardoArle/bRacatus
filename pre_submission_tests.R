@@ -19,9 +19,10 @@ codemeta::write_codemeta()
 
 devtools::release()
 
-
 # create a release on github: https://github.com/EduardoArle/bRacatus/tags
 
 # Submit to Ropensci: https://github.com/ropensci/software-review 
 
-
+library(roxygen2)
+library(devtools)
+document()

@@ -4,8 +4,7 @@
 #'
 #' @importFrom jsonlite read_json 
 #' @importFrom geojsonio geojson_read
-#' @importFrom maptools spRbind
-#' @importFrom sp spChFIDs
+#' @importFrom sf st_as_sf
 #' @param species character, species binomial name
 #' @param min_size numeric, minimum size of checklists (in km2) to be included 
 #' in the analysis.
@@ -53,12 +52,13 @@ giftRegions <- function(species,min_size=1000,max_size=100000000000){
         if(!inherits(a, "try-error")){
           a$native <- jdata$native[[i]]
           a$naturalised <- jdata$naturalized[[i]]
-          b <- sp::spChFIDs(a,paste(i))
+          b <- st_as_sf(a)
           if(i == 1){
             regs <- b
           }else{
             if(ncol(regs) == ncol(b)){
-              regs <- spRbind(regs,b)
+              poly_list <- list(regs,b)
+              regs <- rbind(regs,b)
             }
           }
         }

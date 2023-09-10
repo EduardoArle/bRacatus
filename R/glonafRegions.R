@@ -2,11 +2,9 @@
 #'
 #' Gets regions listed by GloNAF for plant species
 #'
-#' @importFrom rgdal readOGR
+#' @importFrom sf st_area st_as_sf
 #' @importFrom raster area
 #' @importFrom geojsonio geojson_read
-#' @importFrom maptools spRbind
-#' @importFrom sp spChFIDs
 #' @param species character, species binomial name
 #' @param native character, source for the native reference regions. Options 
 #' are "gift", "range map", or "checklist". If "gift" is chosen, the function 
@@ -57,10 +55,11 @@ glonafRegions <- function(species,native = "gift",nat_ref_reg = NULL){
   if(inherits(regs_nat2, "try-error") | nrow(regs_nat2) == 0){
     nat <- NA
   }else{
-    regs_nat2@data <- data.frame(area = area(regs_nat2)/1000000)
-    
-    nat <- sp::spChFIDs(regs_nat2,paste(seq_len(nrow(regs_nat2))))
+    nat <- regs_nat2
   }
+  
+  #transform into an sf object
+  nat <- st_as_sf(nat)
   
   #get glonaf information
   
@@ -94,13 +93,15 @@ glonafRegions <- function(species,native = "gift",nat_ref_reg = NULL){
                 glonaf_table$OBJIDsic[i],".geojson",sep=""), what = "sp")),
           silent = TRUE)
         
+        #transform into an sf object
+        b <- st_as_sf(a)
+        
         if(!inherits(a, "try-error")){
-          b <- sp::spChFIDs(a,paste(i))
           if(i == 1){
             alien <- b
           }else{
             if(ncol(alien) == ncol(b)){
-              alien <- spRbind(alien,b)
+              alien <- rbind(alien,b)
             }
           }
         }
@@ -109,17 +110,28 @@ glonafRegions <- function(species,native = "gift",nat_ref_reg = NULL){
   }
   
   if(nrow(alien) > 0){
-    #change the attribute table of the alien regions to show only area
-    alien@data <- data.frame(area = area(alien)/1000000)
+    #include area into the attribute table
+    alien$area <- NA
+    for(i in 1:nrow(alien))
+    {
+      
+      #some of the features may have problems in the geography (edges crossing), check for it
+      if(st_is_valid(alien[i,])){
+        alien$area[i] <- as.numeric(st_area(alien[i,]))/1000000
+      }
+    }
     
-    #fix the IDs to alow to later join with the native regions and make the 
-    #Presence
-    from <- nrow(nat)+1
-    to <- nrow(nat)+nrow(alien)
-    alien <- sp::spChFIDs(alien,paste(c(from:to)))
-    presence <- spRbind(nat,alien)
-    regs_list <- list(presence,nat,alien)
-    names(regs_list) <- c("Presence","Native","Alien")
+    #change the attribute tables of the alien and native regions to show only area
+    nat_2 <- nat[,c(which(names(nat) == 'area'), 
+                    which(names(nat) == 'geometry'))]
+    
+    alien_2 <- alien[,c(which(names(alien) == 'area'), 
+                    which(names(alien) == 'geometry'))]
+
+      
+    presence <- rbind(nat_2, alien_2)
+    regs_list <- list(presence, nat, alien)
+    names(regs_list) <- c("Presence", "Native", "Alien")
     return(regs_list)
   }else{
     return("Species not listed in GloNAF")

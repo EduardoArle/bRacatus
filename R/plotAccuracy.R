@@ -5,7 +5,7 @@
 #' @importFrom graphics points par text
 #' @importFrom plotfunctions gradientLegend
 #' @importFrom raster extent plot
-#' @importFrom rgeos gIntersection gBuffer
+#' ##@importFrom rgeos gIntersection gBuffer
 #' @importFrom rworldmap getMap
 #' @importFrom sp over proj4string
 #' @importFrom grDevices colorRampPalette rgb
@@ -34,25 +34,54 @@ plotAccuracy <- function(acc, regional = TRUE, reg.by = "country",
   oldpar <- par(no.readonly = TRUE)
   on.exit(par(oldpar))
   world <- getMap(resolution = "low")
-  world <- suppressWarnings(gBuffer(world, byid = TRUE, width = 0))
+
   acc_sp <- occSpatialPoints(acc)
+  
   if(regional){
     if(reg.by=="country"){
-      countries <- unique(over(acc_sp,world)$NAME)
+      
+      countries <- unique(over(acc_sp, world)$NAME)
       countries <- world[world$NAME %in% countries,]
       CP <- as(extent(countries), "SpatialPolygons")
       sp::proj4string(CP) <- CRS(proj4string(world))
-      map <- suppressWarnings(gIntersection(world, CP, byid = TRUE, 
+      
+      #adapt to sf
+      world <- st_as_sf(world) 
+      CP <- st_as_sf(CP)
+      
+      #fix the edge crosses in the polygons
+      old_crs <- st_crs(world)
+      world <- st_transform(world, crs = 3857) 
+      CP <- st_transform(CP, crs = 3857) 
+      
+      map <- suppressWarnings(st_intersection(world, CP, byid = TRUE, 
                                             checkValidity = 2))
+      
+      #transform projections back for plotting
+      map <- st_transform(map, crs = old_crs) 
+      
     }
     if (reg.by == "points") {
       CP <- as(extent(acc_sp) + c(-1.5, 1.5, -1.5, 1.5), "SpatialPolygons")
       sp::proj4string(CP) <- CRS(proj4string(world))
-      map <- suppressWarnings(gIntersection(world, CP, byid = TRUE, 
+      
+      #adapt to sf
+      world <- st_as_sf(world) 
+      CP <- st_as_sf(CP)
+      
+      #fix the edge crosses in the polygons
+      old_crs <- st_crs(world)
+      world <- st_transform(world, crs = 3857) 
+      CP <- st_transform(CP, crs = 3857) 
+      map <- suppressWarnings(st_intersection(world, CP, byid = TRUE, 
                                             checkValidity = 2))
     }
   } else {
+    #adapt to sf
+    world <- st_as_sf(world) 
+    
     map <- world
+    
   }
   colacc <- colorRampPalette(c("#c51b7d", "#e9a3c9", "#fde0ef", "#f7f7f7", 
                                "#e6f5d0", "#a1d76a", "#4d9221"))
@@ -66,11 +95,11 @@ plotAccuracy <- function(acc, regional = TRUE, reg.by = "country",
   }
   
   par(mfrow = c(1, 1), mar = c(1.5, 1.5, 1.5, 5))
-  plot(map, col = col.features, bg = col.bg, border = bord,
+  plot(st_geometry(map), col = col.features, bg = col.bg, border = bord,
        main = unique(acc$species), font.main = 3)
   
   if (plot.range) {
-    plot(range, add = TRUE, border = NA, col = "#1c9099")
+    plot(st_geometry(range), add = TRUE, border = NA, col = "#1c9099")
   }
   
   if (box) {
@@ -96,5 +125,8 @@ plotAccuracy <- function(acc, regional = TRUE, reg.by = "country",
                    side = 4, color = colacc(20), n.seg = 3)
   }
   
-  points(acc_sp, pch = 21, cex = 1, bg = col_pts_acc)
+  #adapt to sf
+  acc_sp <- st_as_sf(acc_sp) 
+  
+  plot(st_geometry(acc_sp), add = T, pch = 21, cex = 1, bg = col_pts_acc) 
 }
