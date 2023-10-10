@@ -3,12 +3,11 @@
 #' Plot the species occurrences showing the estimated biogeographical status 
 #' of points.
 #'
-#' @importFrom graphics points par
+#' @importFrom graphics points par text
 #' @importFrom plotfunctions gradientLegend
 #' @importFrom raster extent plot
-#' @importFrom rgeos gIntersection gBuffer
-#' @importFrom rworldmap getMap
-#' @importFrom sp over proj4string
+#' @importFrom rnaturalearth ne_countries
+#' @importFrom sf st_as_sf st_intersects st_polygon st_sfc
 #' @importFrom grDevices colorRampPalette rgb
 #' @importFrom methods as
 #' @param biogeo dataTable of the species occurrence including a 
@@ -34,26 +33,56 @@ plotBiogeoStatus <- function(biogeo, regional = TRUE, reg.by = "country",
                              range = NULL, box = FALSE) {
   oldpar <- par(no.readonly = TRUE)
   on.exit(par(oldpar))
-  world <- getMap(resolution = "low")
-  world <- suppressWarnings(gBuffer(world, byid = TRUE, width = 0))
-  biogeo_sp <- occSpatialPoints(biogeo)
+  world <- ne_countries(returnclass = "sf")
+  world <- st_make_valid(world)
+  
+  biogeo_sf <- st_as_sf(biogeo, 
+                        coords = c('decimalLongitude', 'decimalLatitude'),
+                        crs = crs(world))
+  
   if(regional){
     if(reg.by=="country"){
-      countries <- unique(over(biogeo_sp,world)$NAME)
-      countries <- world[world$NAME %in% countries,]
-      CP <- as(extent(countries), "SpatialPolygons")
-      sp::proj4string(CP) <- CRS(proj4string(world))
-      map <- suppressWarnings(gIntersection(world, CP, byid = TRUE, 
-                                            checkValidity = 2))
+      
+      countries <-  unique(sapply(st_intersects(biogeo_sf,world), 
+                        function(x) if (length(x)==0) NA_integer_ else x[1]))
+      
+      if(length(which(is.na(countries))) == 1){
+        countries <-  countries[-which(is.na(countries))]
+      }
+      
+      countries <- world[countries,]
+      
+      coords_CP <- extent(countries)
+      
+      CP <- st_polygon(list(cbind(
+        c(coords_CP[1],coords_CP[2],coords_CP[2],coords_CP[1],coords_CP[1]),
+        c(coords_CP[3],coords_CP[3],coords_CP[4],coords_CP[4],coords_CP[3]))))
+      
+      CP <- st_sfc(CP, crs = crs(world))
+      CP <- st_as_sf(CP)
+      
+      map <- suppressWarnings(st_intersection(world, CP))
     }
+    
     if (reg.by == "points") {
-      CP <- as(extent(biogeo_sp) + c(-1.5, 1.5, -1.5, 1.5), "SpatialPolygons")
-      sp::proj4string(CP) <- CRS(proj4string(world))
-      map <- suppressWarnings(gIntersection(world, CP, byid = TRUE, 
-                                            checkValidity = 2))
+      
+      coords_CP <- extent(biogeo_sf)
+      
+      CP <- st_polygon(list(cbind(
+        c(coords_CP[1],coords_CP[2],coords_CP[2],coords_CP[1],coords_CP[1]) +
+          c(-1.5, 1.5, -1.5, 1.5),
+        c(coords_CP[3],coords_CP[3],coords_CP[4],coords_CP[4],coords_CP[3]) +
+          c(-1.5, 1.5, -1.5, 1.5))))
+      
+      CP <- st_sfc(CP, crs = crs(world))
+      CP <- st_as_sf(CP)
+      
+      map <- suppressWarnings(st_intersection(world, CP))
     }
   } else {
+    
     map <- world
+    
   }
   colbiogeo <- colorRampPalette(c("#b2182b", "#ef8a62", "#fddbc7", "#fddbc7", 
                                   "#f7f7f7", "#f7f7f7", "#f7f7f7", "#d1e5f0", 
@@ -69,15 +98,18 @@ plotBiogeoStatus <- function(biogeo, regional = TRUE, reg.by = "country",
   }
   
   par(mfrow = c(1, 1), mar = c(1.5, 1.5, 1.5, 5))
-  plot(map, col = col.features, bg = col.bg, border = bord, 
+  plot(st_geometry(map), col = col.features, bg = col.bg, border = bord, 
        main = unique(biogeo$species), font.main = 3)
   
   if (plot.range) {
     nat_rang <- range[which(range$legend == "Extant (resident)"), ]
     alien_rang <- range[which(range$legend == "Introduced"), ]
     
-    plot(nat_rang, add = TRUE, border = NA, col = "#31a354")
-    plot(alien_rang, add = TRUE, border = NA, col = "#feb24c")
+    nat_rang <- st_as_sf(nat_rang, crs = crs(world))
+    alien_rang <- st_as_sf(alien_rang, crs = crs(world))
+    
+    plot(st_geometry(nat_rang), add = TRUE, border = NA, col = "#31a354")
+    plot(st_geometry(alien_rang), add = TRUE, border = NA, col = "#feb24c")
   }
   
   if (box) {
@@ -107,5 +139,5 @@ plotBiogeoStatus <- function(biogeo, regional = TRUE, reg.by = "country",
                    n.seg = 3)
   }
   
-  points(biogeo_sp, pch = 21, cex = 1, bg = col_pts_biogeo)
+  plot(st_geometry(biogeo_sf), add = T, pch = 21, cex = 1, bg = col_pts_biogeo)
 }

@@ -2,16 +2,14 @@
 #'
 #' List of countries and entities names for checklists
 #'
-#' @importFrom rworldmap getMap
+#' @importFrom rnaturalearth ne_countries
 #' @return This function provides a list of countries and entities names 
 #' available with rworldmaps for checklists
 #' @examples
 #' country_list <- availableCountries()
 #' @export
 availableCountries <- function() {
-  world <- getMap()
-  list <- sort(world$NAME)
+  world <- ne_countries(returnclass = "sf")
+  list <- sort(world$name_sort)
   return(list)
 }
-
-

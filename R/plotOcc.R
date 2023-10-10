@@ -4,9 +4,8 @@
 #'
 #' @importFrom graphics points
 #' @importFrom raster extent plot
-#' @importFrom rgeos gIntersection gBuffer
-#' @importFrom rworldmap getMap
-#' @importFrom sp over proj4string
+#' @importFrom rnaturalearth ne_countries
+#' @importFrom sf st_as_sf st_intersects st_polygon st_sfc
 #' @param occ dataTable of the species occurrence.
 #' @param regional logical, whether the whole world should be plotted as the 
 #' background or only the region adjacent to the species countries of 
@@ -27,6 +26,7 @@
 #' occ <- giveOcc(test_data,"sps","lon","lat")
 #' 
 #' plotOcc(occ)
+#' 
 #' # Plot occurrences with the whole world as background
 #' 
 #' plotOcc(occ,regional=FALSE)
@@ -36,23 +36,43 @@
 plotOcc <- function(occ, regional = TRUE) {
   oldpar <- par(no.readonly = TRUE)
   on.exit(par(oldpar))
-  world <- getMap(resolution = "low")
-  world <- suppressWarnings(gBuffer(world, byid = TRUE, width = 0))
-  occ_sp <- occSpatialPoints(occ)
-  if(regional == TRUE){
-    countries <- unique(over(occ_sp,world)$NAME)
-    countries <- world[world$NAME %in% countries,]
-    CP <- as(extent(countries), "SpatialPolygons")
-    sp::proj4string(CP) <- CRS(proj4string(world))
-    map <- suppressWarnings(gIntersection(world,
-                                          CP,
-                                          byid = TRUE, 
-                                          checkValidity = 2))
+  world <- ne_countries(returnclass = "sf")
+  world <- st_make_valid(world)
+  
+  occ_sf <- st_as_sf(occ, coords = c('decimalLongitude', 'decimalLatitude'),
+                     crs = crs(world))
+  
+  if(regional){
+    
+    countries <-  unique(sapply(st_intersects(occ_sf,world), 
+                                function(x) if (length(x)==0) NA_integer_ else x[1]))
+    
+    if(length(which(is.na(countries))) == 1){
+      countries <-  countries[-which(is.na(countries))]
+    }
+    
+    countries <- world[countries,]
+    
+    coords_CP <- extent(countries)
+    
+    CP <- st_polygon(list(cbind(
+      c(coords_CP[1],coords_CP[2],coords_CP[2],coords_CP[1],coords_CP[1]),
+      c(coords_CP[3],coords_CP[3],coords_CP[4],coords_CP[4],coords_CP[3]))))
+    
+    CP <- st_sfc(CP, crs = crs(world))
+    CP <- st_as_sf(CP)
+    
+    map <- suppressWarnings(st_intersection(world, CP))
+    
   } else {
+    
     map <- world
+    
   }
+  
   par(mfrow = c(1, 1), mar = c(1, 1, 1, 1))
-  plot(map, col = "khaki", bg = "azure2",
-       main = unique(occ_sp$species), font.main = 3)
-  points(occ_sp, pch = 21, cex = 1, bg = "red")
+  plot(st_geometry(map), col = "khaki", bg = "azure2",
+       main = unique(occ_sf$species), font.main = 3)
+  
+  plot(st_geometry(occ_sf), add = T, pch = 21, cex = 1, bg = 'red') 
 }

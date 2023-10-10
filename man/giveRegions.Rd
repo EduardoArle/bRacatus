@@ -25,10 +25,13 @@ corresponding to regions where the species has been listed as alien.
 Input checklist regions
 }
 \examples{
-library(rworldmap)
-world <- getMap()
-regs <- world[c("Brazil","Argentina","Uruguay","Paraguay"),]
-regs_native <- world[c("Brazil","Paraguay"),]
-regs_alien <- world[c("Argentina"),]
+library(rnaturalearth)
+world <- ne_countries(returnclass = "sf")
+reg_names <- c("Brazil","Argentina","Uruguay","Paraguay")
+reg_native <- c("Brazil","Paraguay")
+reg_alien <- c("Argentina")
+regs <- world[which(world$name_sort \%in\% reg_names),]
+regs_native <- world[which(world$name_sort \%in\% reg_native),]
+regs_alien <- world[which(world$name_sort \%in\% reg_alien),]
 regs_list <- giveRegions(regs,regs_native,regs_alien)
 }

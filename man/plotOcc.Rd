@@ -34,6 +34,7 @@ test_data <- data.frame(sps=rep("Equus acephalus",10),
 occ <- giveOcc(test_data,"sps","lon","lat")
 
 plotOcc(occ)
+
 # Plot occurrences with the whole world as background
 
 plotOcc(occ,regional=FALSE)

@@ -5,9 +5,8 @@
 #' @importFrom graphics points par text
 #' @importFrom plotfunctions gradientLegend
 #' @importFrom raster extent plot
-#' ##@importFrom rgeos gIntersection gBuffer
-#' @importFrom rworldmap getMap
-#' @importFrom sp over proj4string
+#' @importFrom rnaturalearth ne_countries
+#' @importFrom sf st_as_sf st_intersects st_polygon st_sfc
 #' @importFrom grDevices colorRampPalette rgb
 #' @importFrom methods as
 #' @param acc dataTable of the species occurrence including a column with the 
@@ -33,52 +32,52 @@ plotAccuracy <- function(acc, regional = TRUE, reg.by = "country",
                          range = NULL, box = FALSE) {
   oldpar <- par(no.readonly = TRUE)
   on.exit(par(oldpar))
-  world <- getMap(resolution = "low")
+  world <- ne_countries(returnclass = "sf")
+  world <- st_make_valid(world)
 
-  acc_sp <- occSpatialPoints(acc)
+  acc_sf <- st_as_sf(acc, coords = c('decimalLongitude', 'decimalLatitude'),
+                     crs = crs(world))
   
   if(regional){
     if(reg.by=="country"){
       
-      countries <- unique(over(acc_sp, world)$NAME)
-      countries <- world[world$NAME %in% countries,]
-      CP <- as(extent(countries), "SpatialPolygons")
-      sp::proj4string(CP) <- CRS(proj4string(world))
+      countries <-  unique(sapply(st_intersects(acc_sf,world), 
+                   function(x) if (length(x)==0) NA_integer_ else x[1]))
       
-      #adapt to sf
-      world <- st_as_sf(world) 
+      if(length(which(is.na(countries))) == 1){
+        countries <-  countries[-which(is.na(countries))]
+      }
+                
+      countries <- world[countries,]
+
+      coords_CP <- extent(countries)
+      
+      CP <- st_polygon(list(cbind(
+                c(coords_CP[1],coords_CP[2],coords_CP[2],coords_CP[1],coords_CP[1]),
+                c(coords_CP[3],coords_CP[3],coords_CP[4],coords_CP[4],coords_CP[3]))))
+      
+      CP <- st_sfc(CP, crs = crs(world))
       CP <- st_as_sf(CP)
       
-      #fix the edge crosses in the polygons
-      old_crs <- st_crs(world)
-      world <- st_transform(world, crs = 3857) 
-      CP <- st_transform(CP, crs = 3857) 
-      
-      map <- suppressWarnings(st_intersection(world, CP, byid = TRUE, 
-                                            checkValidity = 2))
-      
-      #transform projections back for plotting
-      map <- st_transform(map, crs = old_crs) 
-      
+      map <- suppressWarnings(st_intersection(world, CP))
     }
+    
     if (reg.by == "points") {
-      CP <- as(extent(acc_sp) + c(-1.5, 1.5, -1.5, 1.5), "SpatialPolygons")
-      sp::proj4string(CP) <- CRS(proj4string(world))
       
-      #adapt to sf
-      world <- st_as_sf(world) 
+      coords_CP <- extent(acc_sf)
+      
+      CP <- st_polygon(list(cbind(
+        c(coords_CP[1],coords_CP[2],coords_CP[2],coords_CP[1],coords_CP[1]) +
+          c(-1.5, 1.5, -1.5, 1.5),
+        c(coords_CP[3],coords_CP[3],coords_CP[4],coords_CP[4],coords_CP[3]) +
+          c(-1.5, 1.5, -1.5, 1.5))))
+      
+      CP <- st_sfc(CP, crs = crs(world))
       CP <- st_as_sf(CP)
       
-      #fix the edge crosses in the polygons
-      old_crs <- st_crs(world)
-      world <- st_transform(world, crs = 3857) 
-      CP <- st_transform(CP, crs = 3857) 
-      map <- suppressWarnings(st_intersection(world, CP, byid = TRUE, 
-                                            checkValidity = 2))
+      map <- suppressWarnings(st_intersection(world, CP))
     }
   } else {
-    #adapt to sf
-    world <- st_as_sf(world) 
     
     map <- world
     
@@ -99,6 +98,7 @@ plotAccuracy <- function(acc, regional = TRUE, reg.by = "country",
        main = unique(acc$species), font.main = 3)
   
   if (plot.range) {
+    range <- st_as_sf(range, crs = crs(world))
     plot(st_geometry(range), add = TRUE, border = NA, col = "#1c9099")
   }
   
@@ -128,5 +128,5 @@ plotAccuracy <- function(acc, regional = TRUE, reg.by = "country",
   #adapt to sf
   acc_sp <- st_as_sf(acc_sp) 
   
-  plot(st_geometry(acc_sp), add = T, pch = 21, cex = 1, bg = col_pts_acc) 
+  plot(st_geometry(acc_sf), add = T, pch = 21, cex = 1, bg = col_pts_acc) 
 }
