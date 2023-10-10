@@ -45,7 +45,7 @@ plotOcc <- function(occ, regional = TRUE) {
   if(regional){
     
     countries <-  unique(sapply(st_intersects(occ_sf,world), 
-                                function(x) if (length(x)==0) NA_integer_ else x[1]))
+                          function(x) if (length(x)==0) NA_integer_ else x[1]))
     
     if(length(which(is.na(countries))) == 1){
       countries <-  countries[-which(is.na(countries))]

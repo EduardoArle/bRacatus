@@ -115,13 +115,15 @@ glonafRegions <- function(species,native = "gift",nat_ref_reg = NULL){
     for(i in 1:nrow(alien))
     {
       
-      #some of the features may have problems in the geography (edges crossing), check for it
+      #some of the features may have problems in the geography (edges crossing), 
+      #check for it
       if(st_is_valid(alien[i,])){
         alien$area[i] <- as.numeric(st_area(alien[i,]))/1000000
       }
     }
     
-    #change the attribute tables of the alien and native regions to show only area
+    #change the attribute tables of the alien and native regions to show only 
+    #area
     nat_2 <- nat[,c(which(names(nat) == 'area'), 
                     which(names(nat) == 'geometry'))]
     

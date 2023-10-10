@@ -53,8 +53,8 @@ plotAccuracy <- function(acc, regional = TRUE, reg.by = "country",
       coords_CP <- extent(countries)
       
       CP <- st_polygon(list(cbind(
-                c(coords_CP[1],coords_CP[2],coords_CP[2],coords_CP[1],coords_CP[1]),
-                c(coords_CP[3],coords_CP[3],coords_CP[4],coords_CP[4],coords_CP[3]))))
+          c(coords_CP[1],coords_CP[2],coords_CP[2],coords_CP[1],coords_CP[1]),
+          c(coords_CP[3],coords_CP[3],coords_CP[4],coords_CP[4],coords_CP[3]))))
       
       CP <- st_sfc(CP, crs = crs(world))
       CP <- st_as_sf(CP)
