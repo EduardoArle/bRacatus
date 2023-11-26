@@ -3,9 +3,10 @@
 #' Plot the species occurrences with map background for visualisation
 #'
 #' @importFrom graphics points
-#' @importFrom raster extent plot
+#' @importFrom raster crs extent plot
 #' @importFrom rnaturalearth ne_countries
-#' @importFrom sf st_as_sf st_intersects st_polygon st_sfc
+#' @importFrom sf st_as_sf st_intersects st_intersection st_make_valid 
+#' @importFrom sf st_polygon st_sfc
 #' @param occ dataTable of the species occurrence.
 #' @param regional logical, whether the whole world should be plotted as the 
 #' background or only the region adjacent to the species countries of 
@@ -36,19 +37,20 @@
 plotOcc <- function(occ, regional = TRUE) {
   oldpar <- par(no.readonly = TRUE)
   on.exit(par(oldpar))
-  world <- ne_countries(returnclass = "sf")
+  world <- ne_countries(returnclass = "sf", scale = 'large')
   world <- st_make_valid(world)
   
   occ_sf <- st_as_sf(occ, coords = c('decimalLongitude', 'decimalLatitude'),
                      crs = crs(world))
   
   if(regional){
-    
-    countries <-  unique(sapply(st_intersects(occ_sf,world), 
-                          function(x) if (length(x)==0) NA_integer_ else x[1]))
+
+    countries <- unique(vapply(st_intersects(occ_sf,world), 
+                          function(x) if (length(x)==0) NA_integer_ else x[1],
+                          FUN.VALUE = 1))
     
     if(length(which(is.na(countries))) == 1){
-      countries <-  countries[-which(is.na(countries))]
+      countries <- countries[-which(is.na(countries))]
     }
     
     countries <- world[countries,]

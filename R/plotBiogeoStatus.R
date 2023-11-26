@@ -42,9 +42,10 @@ plotBiogeoStatus <- function(biogeo, regional = TRUE, reg.by = "country",
   
   if(regional){
     if(reg.by=="country"){
-      
-      countries <-  unique(sapply(st_intersects(biogeo_sf,world), 
-                        function(x) if (length(x)==0) NA_integer_ else x[1]))
+
+      countries <- unique(vapply(st_intersects(biogeo_sf,world), 
+                          function(x) if (length(x)==0) NA_integer_ else x[1],
+                          FUN.VALUE = 1))
       
       if(length(which(is.na(countries))) == 1){
         countries <-  countries[-which(is.na(countries))]

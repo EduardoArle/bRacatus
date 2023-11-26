@@ -2,7 +2,7 @@
 #'
 #' Gets regions listed by GloNAF for plant species
 #'
-#' @importFrom sf st_area st_as_sf
+#' @importFrom sf st_area st_as_sf st_is_valid
 #' @importFrom raster area
 #' @importFrom geojsonio geojson_read
 #' @param species character, species binomial name
@@ -112,10 +112,10 @@ glonafRegions <- function(species,native = "gift",nat_ref_reg = NULL){
   if(nrow(alien) > 0){
     #include area into the attribute table
     alien$area <- NA
-    for(i in 1:nrow(alien))
+    for(i in seq_along(alien$area))
     {
       
-      #some of the features may have problems in the geography (edges crossing), 
+      #some of the features may have problems in the geography (edges crossing) 
       #check for it
       if(st_is_valid(alien[i,])){
         alien$area[i] <- as.numeric(st_area(alien[i,]))/1000000

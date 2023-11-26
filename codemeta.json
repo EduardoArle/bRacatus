@@ -7,13 +7,13 @@
   "codeRepository": "https://github.com/EduardoArle/bRacatus",
   "issueTracker": "https://github.com/EduardoArle/bRacatus/issues",
   "license": "https://spdx.org/licenses/GPL-2.0",
-  "version": "1.0.11",
+  "version": "2.0.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.2.1 (2022-06-23)",
+  "runtimePlatform": "R version 4.2.2 (2022-10-31)",
   "author": [
     {
       "@type": "Person",
@@ -137,22 +137,10 @@
     },
     "7": {
       "@type": "SoftwareApplication",
-      "identifier": "maptools",
-      "name": "maptools",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=maptools"
-    },
-    "8": {
-      "@type": "SoftwareApplication",
       "identifier": "methods",
       "name": "methods"
     },
-    "9": {
+    "8": {
       "@type": "SoftwareApplication",
       "identifier": "plotfunctions",
       "name": "plotfunctions",
@@ -164,7 +152,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=plotfunctions"
     },
-    "10": {
+    "9": {
       "@type": "SoftwareApplication",
       "identifier": "raster",
       "name": "raster",
@@ -176,7 +164,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=raster"
     },
-    "11": {
+    "10": {
       "@type": "SoftwareApplication",
       "identifier": "rgbif",
       "name": "rgbif",
@@ -188,43 +176,31 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=rgbif"
     },
+    "11": {
+      "@type": "SoftwareApplication",
+      "identifier": "rnaturalearth",
+      "name": "rnaturalearth",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rnaturalearth"
+    },
     "12": {
       "@type": "SoftwareApplication",
-      "identifier": "rgdal",
-      "name": "rgdal",
+      "identifier": "sf",
+      "name": "sf",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=rgdal"
+      "sameAs": "https://CRAN.R-project.org/package=sf"
     },
     "13": {
-      "@type": "SoftwareApplication",
-      "identifier": "rgeos",
-      "name": "rgeos",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=rgeos"
-    },
-    "14": {
-      "@type": "SoftwareApplication",
-      "identifier": "rworldmap",
-      "name": "rworldmap",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=rworldmap"
-    },
-    "15": {
       "@type": "SoftwareApplication",
       "identifier": "sp",
       "name": "sp",
@@ -236,14 +212,14 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=sp"
     },
-    "16": {
+    "14": {
       "@type": "SoftwareApplication",
       "identifier": "stats",
       "name": "stats"
     },
     "SystemRequirements": null
   },
-  "fileSize": "652.739KB",
+  "fileSize": "656.019KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -298,7 +274,7 @@
       "name": "bRacatus: A method to estimate the accuracy and biogeographical status of georeferenced biological data",
       "identifier": "10.1111/2041-210X.13629",
       "url": "https://github.com/EduardoArle/bRacatus",
-      "description": "R package version 1.0.11",
+      "description": "R package version 2.0.0",
       "pagination": "-10",
       "@id": "https://doi.org/10.1111/2041-210X.13629",
       "sameAs": "https://doi.org/10.1111/2041-210X.13629",

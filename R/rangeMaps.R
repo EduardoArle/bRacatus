@@ -2,13 +2,9 @@
 #'
 #' Prepares range maps input by the user to be used as reference regions
 #'
-#' @importFrom raster raster
-#' @importFrom raster projectRaster
-#' @importFrom raster crop
-#' @importFrom raster rasterize
-#' @importFrom raster rasterToPolygons
-#' @importFrom raster area
+#' @importFrom raster area crop projectRaster raster rasterize rasterToPolygons
 #' @param  range SpatialPolygonsDataFrame
+#' @importFrom sf st_as_sf
 #' @param  biogeo character, name of the column containing information on 
 #' biogeographic status of features
 #' @param  native character, entries in biogeo column representing the native 
@@ -30,8 +26,8 @@ rangeMaps <- function(range,
                       native = "Extant (resident)",
                       alien = "Introduced") {
   
-    range_native <- range[which(range@data[, biogeo] %in% native), ]
-    range_alien <- range[which(range@data[, biogeo] %in% alien), ]
+  range_native <- range[which(range@data[, biogeo] %in% native), ]
+  range_alien <- range[which(range@data[, biogeo] %in% alien), ]
   
   raster_2degrees <- raster(vals = NA, res = 2)
   raster_cut <- crop(raster_2degrees, extent(range) + c(-2, 2, -2, 2))
@@ -45,6 +41,8 @@ rangeMaps <- function(range,
   range4 <- range4[which(range4$layer >= 0.01), ]
   range4$area <- raster::area(range4)/1e+06
   
+  range5 <- st_as_sf(range4)
+  
   if(nrow(range_native) > 0){
     range_native2 <- rasterize(range_native, raster_cut, getCover = TRUE)  
     #rasterise the range map #count also very small features
@@ -56,6 +54,8 @@ rangeMaps <- function(range,
   }else{
     range_native4 <- range_native
   }
+  
+  range_native5 <- st_as_sf(range_native4)
 
   if(nrow(range_alien) > 0){
     range_alien2 <- rasterize(range_alien, raster_cut, getCover = TRUE)  
@@ -68,8 +68,10 @@ rangeMaps <- function(range,
   }else{
     range_alien4 <- range_alien
   }
+  
+  range_alien5 <- st_as_sf(range_alien4)
 
-  range_list <- list(range4, range_native4, range_alien4)
+  range_list <- list(range5, range_native5, range_alien5)
   names(range_list) <- c("Presence", "Native", "Alien")
   return(range_list)
 }
