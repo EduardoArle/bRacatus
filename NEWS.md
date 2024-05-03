@@ -1,4 +1,11 @@
-bRacatus 2.0.0 (2023-10-25)
+bRacatus 1.1.1 (2024-04-25)
+=========================
+  
+### MAJOR IMPROVEMENTS
+  * Adapted all functions plotting maps to deal with the sf problem of 'edge crosses edge'
+  
+
+bRacatus 1.1.0 (2023-10-25)
 =========================
   
 ### MAJOR IMPROVEMENTS

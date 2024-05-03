@@ -5,7 +5,7 @@
 #' @importFrom graphics points
 #' @importFrom raster crs extent plot
 #' @importFrom rnaturalearth ne_countries
-#' @importFrom sf st_as_sf st_intersects st_intersection st_make_valid 
+#' @importFrom sf st_as_sf st_intersects st_intersection st_transform 
 #' @importFrom sf st_polygon st_sfc
 #' @param occ dataTable of the species occurrence.
 #' @param regional logical, whether the whole world should be plotted as the 
@@ -38,10 +38,12 @@ plotOcc <- function(occ, regional = TRUE) {
   oldpar <- par(no.readonly = TRUE)
   on.exit(par(oldpar))
   world <- ne_countries(returnclass = "sf", scale = 'large')
-  world <- st_make_valid(world)
+  old_proj <- crs(world)
+  world <- st_transform(world, crs = 3857)
   
   occ_sf <- st_as_sf(occ, coords = c('decimalLongitude', 'decimalLatitude'),
-                     crs = crs(world))
+                     crs = old_proj)
+  occ_sf <- st_transform(occ_sf, crs = 3857)
   
   if(regional){
 
@@ -71,6 +73,9 @@ plotOcc <- function(occ, regional = TRUE) {
     map <- world
     
   }
+  
+  map <- st_transform(map, crs = old_proj)
+  occ_sf <- st_transform(occ_sf, crs = old_proj)
   
   par(mfrow = c(1, 1), mar = c(1, 1, 1, 1))
   plot(st_geometry(map), col = "khaki", bg = "azure2",

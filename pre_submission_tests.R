@@ -1,4 +1,5 @@
 library(goodpractice)
+library(devtools)
 
 gp("/Users/carloseduardoaribeiro/Documents/bRacatus/bRacatus") #change 
 
@@ -9,7 +10,7 @@ devtools::check_built(path = "/Users/carloseduardoaribeiro/Documents/bRacatus/bR
 
 devtools::spell_check(use_wordlist = T)
 
-# Run R CMD --check, make sure that there are no erros, warnings or notes
+# Run R CMD --check, make sure that there are no errors, warnings or notes
 
 devtools::check_rhub()
 

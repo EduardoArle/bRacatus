@@ -7,7 +7,7 @@
 #' @importFrom plotfunctions gradientLegend
 #' @importFrom raster extent plot
 #' @importFrom rnaturalearth ne_countries
-#' @importFrom sf st_as_sf st_intersects st_polygon st_sfc
+#' @importFrom sf st_as_sf st_intersects st_polygon st_sfc st_transform
 #' @importFrom grDevices colorRampPalette rgb
 #' @importFrom methods as
 #' @param biogeo dataTable of the species occurrence including a 
@@ -34,18 +34,21 @@ plotBiogeoStatus <- function(biogeo, regional = TRUE, reg.by = "country",
   oldpar <- par(no.readonly = TRUE)
   on.exit(par(oldpar))
   world <- ne_countries(returnclass = "sf")
-  world <- st_make_valid(world)
+  old_proj <- crs(world)
+  world <- st_transform(world, crs = 3857)
   
   biogeo_sf <- st_as_sf(biogeo, 
                         coords = c('decimalLongitude', 'decimalLatitude'),
-                        crs = crs(world))
+                        crs = old_proj)
+  biogeo_sf <- st_transform(biogeo_sf, crs = 3857)
   
   if(regional){
-    if(reg.by=="country"){
+    if(reg.by == "country"){
 
       countries <- unique(vapply(st_intersects(biogeo_sf,world), 
                           function(x) if (length(x)==0) NA_integer_ else x[1],
                           FUN.VALUE = 1))
+      
       
       if(length(which(is.na(countries))) == 1){
         countries <-  countries[-which(is.na(countries))]
@@ -69,11 +72,14 @@ plotBiogeoStatus <- function(biogeo, regional = TRUE, reg.by = "country",
       
       coords_CP <- extent(biogeo_sf)
       
+      x_marge <- (coords_CP[2] - coords_CP[1]) * 0.05
+      y_marge <- (coords_CP[4] - coords_CP[3]) * 0.05
+      
       CP <- st_polygon(list(cbind(
         c(coords_CP[1],coords_CP[2],coords_CP[2],coords_CP[1],coords_CP[1]) +
-          c(-1.5, 1.5, -1.5, 1.5),
+          c(-x_marge, x_marge, x_marge, -x_marge, -x_marge),
         c(coords_CP[3],coords_CP[3],coords_CP[4],coords_CP[4],coords_CP[3]) +
-          c(-1.5, 1.5, -1.5, 1.5))))
+          c(-y_marge, -y_marge, y_marge, y_marge, -y_marge))))
       
       CP <- st_sfc(CP, crs = crs(world))
       CP <- st_as_sf(CP)
@@ -85,6 +91,7 @@ plotBiogeoStatus <- function(biogeo, regional = TRUE, reg.by = "country",
     map <- world
     
   }
+  
   colbiogeo <- colorRampPalette(c("#b2182b", "#ef8a62", "#fddbc7", "#fddbc7", 
                                   "#f7f7f7", "#f7f7f7", "#f7f7f7", "#d1e5f0", 
                                   "#d1e5f0", "#67a9cf", "#2166ac"))
@@ -98,6 +105,8 @@ plotBiogeoStatus <- function(biogeo, regional = TRUE, reg.by = "country",
     bord <- NA
   }
   
+  map <- st_transform(map, crs = old_proj)
+  
   par(mfrow = c(1, 1), mar = c(1.5, 1.5, 1.5, 5))
   plot(st_geometry(map), col = col.features, bg = col.bg, border = bord, 
        main = unique(biogeo$species), font.main = 3)
@@ -106,14 +115,17 @@ plotBiogeoStatus <- function(biogeo, regional = TRUE, reg.by = "country",
     nat_rang <- range[which(range$legend == "Extant (resident)"), ]
     alien_rang <- range[which(range$legend == "Introduced"), ]
     
-    nat_rang <- st_as_sf(nat_rang, crs = crs(world))
-    alien_rang <- st_as_sf(alien_rang, crs = crs(world))
+    nat_rang <- st_as_sf(nat_rang, crs = old_proj)
+    alien_rang <- st_as_sf(alien_rang, crs = old_proj)
     
     plot(st_geometry(nat_rang), add = TRUE, border = NA, col = "#31a354")
     plot(st_geometry(alien_rang), add = TRUE, border = NA, col = "#feb24c")
   }
   
   if (box) {
+    
+    CP <- st_transform(CP, crs = old_proj)
+    
     plot(CP, add = TRUE)
     points((extent(CP)[1] + extent(CP)[2])/2, extent(CP)[3], pch = 3, 
            cex = 0.8)
@@ -139,6 +151,8 @@ plotBiogeoStatus <- function(biogeo, regional = TRUE, reg.by = "country",
                    color = colbiogeo(20), 
                    n.seg = 3)
   }
+  
+  biogeo_sf <- st_transform(biogeo_sf, crs = old_proj)
   
   plot(st_geometry(biogeo_sf), add = T, pch = 21, cex = 1, bg = col_pts_biogeo)
 }

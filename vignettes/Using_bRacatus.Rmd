@@ -47,7 +47,7 @@ data (pts)
 head (pts)[,c(1:4)]
 ```
 
-```{r}
+```{r plot, eval = FALSE}
 plotOcc (pts)
 ```
 
